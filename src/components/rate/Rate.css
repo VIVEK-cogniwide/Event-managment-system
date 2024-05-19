@@ -1,0 +1,96 @@
+.container-1{
+  background-image: url(../../assets//backg1.jpeg);
+  background-size: cover;
+}
+.container-fluid{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+}
+.card-2 {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    margin-bottom: 2rem;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.25rem;
+    background-color: rgba(17, 24, 39, 0.741);
+    padding: 1.5rem;
+  }
+  
+  .header-2 {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .title-2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    color: #fff
+  }
+  
+  .price-2 {
+    font-size: 3.75rem;
+    line-height: 1;
+    font-weight: 700;
+    color: #fff
+  }
+  
+  .desc-2 {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.625;
+    color: rgba(156, 163, 175, 1);
+  }
+  
+  .lists-2 {
+    margin-bottom: 1.5rem;
+    flex: 1 1 0%;
+    color: rgba(156, 163, 175, 1);
+  }
+  
+  .lists-2 .list-2 {
+    margin-bottom: 0.5rem;
+    display: flex;
+    margin-left: 0.5rem
+  }
+  
+  .lists-2 .list-2 svg {
+    height: 1.5rem;
+    width: 1.5rem;
+    flex-shrink: 0;
+    margin-right: 0.5rem;
+    color: royalblue;
+  }
+  
+  .action {
+    border: none;
+    outline: none;
+    display: inline-block;
+    border-radius: 0.25rem;
+    background-color: rgba(65, 105, 225, 0.685);
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: rgba(17, 24, 39, 1);
+  }
+
+  @media (max-width: 768px) {
+    .container-fluid{
+      display: block;
+    }
+    .card-2{
+      width: 290px;
+      
+    }
+    
+  }

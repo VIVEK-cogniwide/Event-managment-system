@@ -1,0 +1,110 @@
+.container {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      45deg,
+      #3498db,
+      #2ecc71
+    ); /* Gradient background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    border-radius: 0px; /* Rounded corners */
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .container::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.1) 1px,
+        transparent 1px
+      ),
+      linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none; /* Allow clicking through the pattern layer */
+  }
+  
+.page{
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    position: relative;
+    margin-bottom: 130px;
+}
+.text{
+    font-size: 32px;
+    text-align: center;
+    margin-top: 80px;
+    color: #d0e3fff0;
+}
+.start{
+    margin-top: 100px;
+}
+.start-link {
+     /* Green background */
+     background-color: royalblue;
+     color: #D0E3FF;
+    border-radius: 5px;
+    padding: 10px 15px; /* Larger padding for more emphasis */
+    text-decoration: none;
+}
+.start-link:hover {
+    background-color: #D0E3FF;/* Darker green */
+    color: royalblue;
+}
+.image img{
+    margin-top: 25px;
+    height: 450px;
+}
+.goal{
+    background-color: #D0E3FF;
+    
+}
+.header{
+    font-size: 36px;
+    color: rgba(0, 0, 0, 0.777);
+    text-align: center;
+}
+.header img{
+    width: 190px;
+    mix-blend-mode: multiply;
+}
+.passage{
+    display: flex;
+    justify-content: space-around;
+    
+}
+.passage p{
+    font-size: 26px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 15px;
+}
+
+@media screen and (max-width: 768px) {
+    .page{
+        display: block;
+    }
+    .start{
+        margin-top: 20px;
+    }
+    .image img{
+        width: 250px;
+        height: 225px;
+        margin-top: 25px;
+        margin-left: 40px;
+    }
+    .text{
+        font-size: 16px;
+    }
+    .passage{
+        display: block;
+        font-size: 20px;
+    }
+    .passage p{
+        font-size: 20px;
+    }
+    
+}

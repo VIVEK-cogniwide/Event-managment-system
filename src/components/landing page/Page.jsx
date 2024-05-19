@@ -1,0 +1,69 @@
+import React from "react";
+
+import { NavLink } from "react-router-dom";
+
+import image from "../../assets/undraw_completed_tasks_vs6q.svg";
+
+import "../landing page/Page.css";
+
+import underline from "../../assets/underline.jpeg";
+
+import { FaRegCheckCircle } from "react-icons/fa";
+
+const Page = () => {
+  return (
+    <div className="container">
+      <div className="page">
+        <div className="text">
+          <h2>
+            
+            <FaRegCheckCircle /> Build teams
+          </h2>
+          <h2>
+            
+            <FaRegCheckCircle /> Create Events
+          </h2>
+          <h2>
+            
+            <FaRegCheckCircle /> Enjoy the process
+          </h2>
+          <div className="start">
+            <NavLink
+              to="/starts"
+              activeClassName="active"
+              className="start-link"
+            >
+              <b>START --></b>
+            </NavLink>
+          </div>
+        </div>
+        <div className="image">
+          <img src={image} alt=""/>
+        </div>
+      </div>
+      <div className="goal">
+        <h2 className="header"><b>Goals</b><br></br><img src={underline} /></h2>
+        <div className="passage">
+          <p>
+            &diams; To provide comprehensive resources and tools for event
+            planners to efficiently organize and coordinate teams.
+          </p>
+          <p>
+            &diams; To enhance colloboration among team members,track progress
+            and deadlines, and ensure the successful execution of events.
+          </p>
+          <p>
+            &diams; To give the users a simple and easy to use web service to
+            use on a daily basis.
+          </p>
+          <p>
+            &diams; To empower event professionals with the knowledge and
+            support they need to effectively manage teams and deliver
+            exceptional events.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default Page;

@@ -1,0 +1,98 @@
+
+.contain{
+  
+   background-color: #D0E3FF;
+   display: flex;
+   justify-content: center;
+   gap: 10px;
+   margin-bottom: 0px;
+}
+
+.head{
+    
+    color: #0056b3;
+    font-size: 38px;
+    margin-left: 100px;
+    margin-top: 150px;
+    
+}
+.head img{
+    height: 250px;
+    width: 300px;
+}
+.form-container {
+    width: 500px;
+    margin-top: 10px;
+    padding: 20px;
+    background-color: #f4f4f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"],
+textarea {
+    width: 100%;
+    
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+    border-color: #0056b3;
+    outline: none;
+}
+.form-group textarea{
+    height: 75px;
+    width: 100%;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+@media screen and (max-width: 768px) {
+    .contain{
+        display: block;
+        margin: 0px;
+        padding: 0px;
+    }
+    .form-container{
+        width: 275px;
+        margin: 5px;
+    }
+    .head{
+        margin: 10px;
+        font-size: 18px;
+        text-align: center;
+        align-items: center;
+    }
+   
+    
+}
