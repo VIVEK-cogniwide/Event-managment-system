@@ -9,7 +9,7 @@ const Nav = () => {
     const navigate = useNavigate(); // Hook for navigation
 
   const handleSignInClick = () => {
-    navigate('/starts'); // Navigate to the sign-in page
+    navigate('/Upcoming'); // Navigate to the sign-in page
   };
 
     return(
@@ -43,7 +43,7 @@ const Nav = () => {
                 </li>
                 <li className="nav-item">
                         <button className="upgrade-btn"onClick={handleSignInClick}>
-                            Sign In
+                            Upcoming
                         </button>
                     </li>
             </ul>

@@ -1,15 +1,19 @@
 import React from "react";
+
 import Nav from "../components/navbar/Nav";
-import GroupExample from "../components/contact/Contact";
+
+import Upcomingevents from "../components/upevents/Upcomingevents.jsx";
+
 import Foot from "../components/footer/Foot";
 
-const Contacts = () => {
+const Upcoming = () => {
     return(
         <>
         <Nav/>
-        <GroupExample/>
+        <Upcomingevents/>
         <Foot/>
         </>
-    );
+        
+    )
 }
-export default Contacts;
+export default Upcoming;

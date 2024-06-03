@@ -5,16 +5,11 @@ import Events from "../pages/Events";
 import Starts from "../pages/Starts";
 import Pricing from '../pages/Pricing';
 import Contacts from "../pages/Contacts";
-import axios from 'axios';
+import Upcoming from '../pages/Upcoming';
+
 
 function App() {
-  axios.get('http://localhost:8080/api/endpoint')
-  .then(response => {
-    console.log(response.data);
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+  
   return (
    
     <BrowserRouter>
@@ -24,6 +19,7 @@ function App() {
             <Route path="/starts" element={<Starts/>}/>
             <Route path="/pricing" element={<Pricing/>}/>
             <Route path="/contact" element={<Contacts/>}/>
+            <Route path="/upcoming" element={<Upcoming/>}/>
            </Routes>
     </BrowserRouter>       
   );

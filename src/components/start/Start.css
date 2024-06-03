@@ -149,9 +149,10 @@
     }
     .illustrate img{
       width: 225px;
+      margin-bottom: 10px;
     }
     .form{
       width: 280px;
-      margin-top: 10px;
+      margin-top: 0px;
     }
   }  

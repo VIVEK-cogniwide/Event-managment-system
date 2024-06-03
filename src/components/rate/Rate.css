@@ -1,6 +1,6 @@
 .container-1{
-  background-image: url(../../assets//backg1.jpeg);
-  background-size: cover;
+  background-color: #fff;
+  
 }
 .container-fluid{
     display: flex;
@@ -18,7 +18,7 @@
     display: flex;
     flex-direction: column;
     border-radius: 0.25rem;
-    background-color: rgba(17, 24, 39, 0.741);
+    background-color: rgb(17, 24, 39);
     padding: 1.5rem;
   }
   
@@ -81,8 +81,22 @@
     text-align: center;
     font-weight: 600;
     letter-spacing: 0.05em;
-    color: rgba(17, 24, 39, 1);
+    color: whitesmoke;
   }
+
+  .sure{
+    display: flex;
+    justify-content: center;
+  }
+  .sure-text h1{
+    font-size: 32px;
+    color: #444cf7;
+  }
+  .sure-text p{
+    font-size: 25px;
+  }
+
+  
 
   @media (max-width: 768px) {
     .container-fluid{
@@ -91,6 +105,9 @@
     .card-2{
       width: 290px;
       
+    }
+    .sure{
+      display: block;
     }
     
   }

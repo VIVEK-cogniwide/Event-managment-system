@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import event from "../../assets/undraw_events_re_98ue.svg";
 import { FaArrowCircleRight } from "react-icons/fa";
+import axios from "axios";
 import "../event/Event.css";
 
 const Event = () => {
@@ -29,13 +30,37 @@ const Event = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(eventData);
-    // Here you might want to add the logic to actually save the data
+    var formData = new FormData();
+    formData.append("title", eventData.title);
+    formData.append("description", eventData.description);
+    formData.append("date", eventData.date);
+    formData.append("location", eventData.location);
+    
+   
+  
+    axios.post('http://localhost:8080/events', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    .then(response => {
+      console.log('Event created:', response.data);
+      // Handle success
+    })
+    .catch(error => {
+      console.error('Error creating event:', error);
+      // Handle error
+    });
+
+      
+
+      
+
   };
 
   return (
     <div className="contain">
-       <h2 className="head"><img src={event} /><br></br><b>Lets create an Event<br></br><FaArrowCircleRight /></b></h2>
+       <h2 className="head"><img src={event} alt=""/><br></br><b>Lets create an Event<br></br><FaArrowCircleRight /></b></h2>
       <div className="form-container">
         <form onSubmit={handleSubmit}>
           <div className="form-group">
