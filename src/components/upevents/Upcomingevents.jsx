@@ -19,6 +19,7 @@ import "../upevents/Upcomingevents.css";
 const UpcomingEvents = () => {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [userId, setUserId] = useState('');
   
 
   useEffect(() => {
@@ -36,10 +37,28 @@ const UpcomingEvents = () => {
     setSelectedEvent(event);
   };
 
-  
+  const handleRegister = (event) => {
+    event.preventDefault();
+    const requestBody = {
+      eventId: selectedEvent.id,
+      userId: parseInt(userId),
+    };
+    axios.post(`http://localhost:8080/events/register`,requestBody)
+      .then((response) => {
+        console.log('User registered for event:', response.data);
+        alert('Successfully registered for the event');
+        setSelectedEvent(null); 
+        setUserId(''); 
+        handleClose(); 
+      })
+      .catch((error) => {
+        console.error('Error registering for event:', error);
+      });
+  };
 
   const handleClose = () => {
     setSelectedEvent(null);
+    setUserId('');
    
   };
 
@@ -48,7 +67,7 @@ const UpcomingEvents = () => {
       <h2 className="header">
         <b>Upcoming Events</b>
         <br></br>
-        <img src={underline} />
+        <img src={underline} alt=""/>
       </h2>
       <div id="upcoming-events">
         {events.map((event) => (
@@ -57,7 +76,7 @@ const UpcomingEvents = () => {
               <div className="card-int">
                 <span className="card__span"><BsFillCalendar2DateFill />{event.eventDate}</span>
                 <div className="img">
-                  <img src={eventsda} />
+                  <img src={eventsda} alt=""/>
                 </div>
                 <div className="card-data">
                   <p className="title-card">
@@ -68,6 +87,7 @@ const UpcomingEvents = () => {
                   </p>
                   
                   <button className="button-card" onClick={() => handleEnrollClick(event)}>Show details</button>
+                  
                   
                 </div>
               </div>
@@ -82,10 +102,24 @@ const UpcomingEvents = () => {
             <p><b>Date:</b> {new Date(selectedEvent.eventDate).toLocaleDateString()}</p>
             <p><b>Location:</b> {selectedEvent.location}</p>
             <p><b>Description:</b> {selectedEvent.description}</p>
-            <button onClick={handleClose}>Close</button>
-          </div>
-        </div>
+            
+            <form onSubmit={handleRegister}>
+            <input
+              type="text"
+              placeholder="Enter your User ID"
+              value={userId}
+              onChange={(e) => setUserId(e.target.value)}
+            />
+            <button type="submit">Enroll Now</button>
+            </form>
+            <button className="" onClick={handleClose}>close</button>
+            </div>
+            </div>
+            
+            
+         
       )}
+       
       
     </div>
   );

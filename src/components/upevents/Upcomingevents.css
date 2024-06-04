@@ -114,6 +114,7 @@ h2{
   
   .modal-content button {
     margin-top: 20px;
+    margin-left: 20px;
     padding: 10px 20px;
     border: none;
     background-color: #007bff;
@@ -136,6 +137,9 @@ h2{
       background-position: 400% 400%;
     }
   }
+
+  
+
   
   @media (max-width: 768px) {
     .event-card{
