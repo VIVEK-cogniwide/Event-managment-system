@@ -28,7 +28,7 @@ const Start = () => {
     
 
     axios.get('http://localhost:8080/register-user')
-    axios.post("http://localhost:8080/register-user", {
+    axios.post(`http://localhost:8080/register-user`, {
         firstname: Data.firstname,
             lastname: Data.lastname,
             email: Data.email,

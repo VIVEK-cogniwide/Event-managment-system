@@ -6,6 +6,8 @@ import Starts from "../pages/Starts";
 import Pricing from '../pages/Pricing';
 import Contacts from "../pages/Contacts";
 import Upcoming from '../pages/Upcoming';
+import LoginModals from '../pages/LoginModals';
+import LoginModal from '../components/login-modal/LoginModal';
 
 
 function App() {
@@ -20,6 +22,7 @@ function App() {
             <Route path="/pricing" element={<Pricing/>}/>
             <Route path="/contact" element={<Contacts/>}/>
             <Route path="/upcoming" element={<Upcoming/>}/>
+            <Route path="/loginmodal" element={<LoginModal/>}/>
            </Routes>
     </BrowserRouter>       
   );

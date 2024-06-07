@@ -11,6 +11,9 @@ const Nav = () => {
   const handleSignInClick = () => {
     navigate('/Upcoming'); // Navigate to the sign-in page
   };
+  const loginclick = () => {
+    navigate('/loginmodal');
+  }
 
     return(
         <nav className="navbar">
@@ -41,6 +44,11 @@ const Nav = () => {
                         Contact
                     </NavLink>
                 </li>
+                <li className="nav-item">
+                        <button className="upgrade-btn" onClick={loginclick}>
+                            Login
+                        </button>
+                    </li>
                 <li className="nav-item">
                         <button className="upgrade-btn"onClick={handleSignInClick}>
                             Upcoming

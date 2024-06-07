@@ -2,6 +2,8 @@ import React from "react";
 
 import { NavLink } from "react-router-dom";
 
+import { useState } from "react";
+
 import image from "../../assets/undraw_completed_tasks_vs6q.svg";
 
 import "../landing page/Page.css";
@@ -14,9 +16,13 @@ import choose from "../../assets/undraw_selection_re_ycpo.png";
 
 import { MdHub } from "react-icons/md";
 
+
+
 const Page = () => {
+ 
   return (
     <div className="container">
+       
       <div className="page">
         <div className="text">
           <h2>
@@ -39,6 +45,7 @@ const Page = () => {
             >
               <b>START --></b>
             </NavLink>
+            
           </div>
         </div>
         <div className="image">

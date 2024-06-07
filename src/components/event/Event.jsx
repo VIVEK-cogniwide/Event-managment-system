@@ -98,14 +98,7 @@ const Event = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="form-group">
-                    <label>Image:</label>
-                    <input
-                        type="file"
-                        onChange={handleFileChange}
-                        accept="image/*"
-                    />
-                </div>
+          
           <button type="submit">Create Event</button>
         </form>
       </div>

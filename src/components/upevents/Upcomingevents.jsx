@@ -20,6 +20,7 @@ const UpcomingEvents = () => {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [userId, setUserId] = useState('');
+  const [password, setPassword] = useState('');
   
 
   useEffect(() => {
@@ -42,14 +43,13 @@ const UpcomingEvents = () => {
     const requestBody = {
       eventId: selectedEvent.id,
       userId: parseInt(userId),
+      password: password,
     };
     axios.post(`http://localhost:8080/events/register`,requestBody)
       .then((response) => {
         console.log('User registered for event:', response.data);
-        alert('Successfully registered for the event');
-        setSelectedEvent(null); 
-        setUserId(''); 
-        handleClose(); 
+        window.alert('Successfully registered for the event');
+         
       })
       .catch((error) => {
         console.error('Error registering for event:', error);
@@ -59,6 +59,7 @@ const UpcomingEvents = () => {
   const handleClose = () => {
     setSelectedEvent(null);
     setUserId('');
+    setPassword('');
    
   };
 
@@ -109,10 +110,18 @@ const UpcomingEvents = () => {
               placeholder="Enter your User ID"
               value={userId}
               onChange={(e) => setUserId(e.target.value)}
+            /><br></br>
+             <input
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <button type="submit">Enroll Now</button>
+            
+            <button type="submit" onClick={handleRegister}>Enroll Now</button>
+            <button id="close-btn" onClick={handleClose}>close</button>
             </form>
-            <button className="" onClick={handleClose}>close</button>
+            
             </div>
             </div>
             
