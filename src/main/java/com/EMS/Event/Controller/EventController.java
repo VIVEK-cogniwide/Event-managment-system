@@ -1,14 +1,12 @@
 package com.EMS.Event.Controller;
-
 import com.EMS.Event.Model.Event;
 import com.EMS.Event.Service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
+
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import java.lang.String;
 import java.util.Date;
 import java.util.List;
 
@@ -33,13 +31,10 @@ public class EventController {
     }
 
 
-
-
-
-    @PostMapping(consumes = "application/json")
+    @PostMapping
     public ResponseEntity<Event> createEvent(@RequestBody String title,
     @RequestBody String description,
-    @RequestBody  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)Date date,
+    @RequestBody  Date date,
     @RequestBody String location)
      {
         Event event = new Event();

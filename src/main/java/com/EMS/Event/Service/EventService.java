@@ -18,10 +18,12 @@ public class EventService {
     private UserRepository userRepository;
 
     public Event saveEvent(Event event) {
+
         return eventrepository.save(event);
     }
 
     public List<Event> getAllEvents() {
+
         return eventrepository.findAll();
     }
 

@@ -18,6 +18,7 @@ public class UserService {
     private EventRepository eventrepository;
 
     public User saveUser(User user) {
+
         return userRepository.save(user);
     }
     public List<User> getAllUsers() {
