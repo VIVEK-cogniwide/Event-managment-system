@@ -5,13 +5,12 @@ import com.EMS.Event.Service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/events")
@@ -29,49 +28,93 @@ public class EventController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Event> getEventById(@PathVariable Long id) {
-        Optional<Event> event = eventService.getEventById(id);
-        return event.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        Event event = eventService.getEventById(id);
+        return ResponseEntity.ok(event);
     }
 
-    @PostMapping(consumes = "multipart/form-data")
-    public ResponseEntity<Event> createEvent(
-            @RequestParam("title") String title,
-            @RequestParam("description") String description,
-            @RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
-            @RequestParam("location") String location
 
-    ) {
+
+
+
+    @PostMapping(consumes = "application/json")
+    public ResponseEntity<Event> createEvent(@RequestBody String title,
+    @RequestBody String description,
+    @RequestBody  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)Date date,
+    @RequestBody String location)
+     {
         Event event = new Event();
         event.setEventName(title);
         event.setDescription(description);
         event.setEventDate(date);
         event.setLocation(location);
-        // Handle the image file as needed, e.g., save to disk or cloud storage
-
-        Event savedEvent = eventService.saveEvent(event);
-        return new ResponseEntity<>(savedEvent, HttpStatus.CREATED);
+        Event createdEvent = eventService.saveEvent(event);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdEvent);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Event> updateEvent(@PathVariable Long id, @RequestBody Event eventDetails) {
-        Optional<Event> event = eventService.getEventById(id);
-        if (event.isPresent()) {
-            Event updatedEvent = event.get();
-            updatedEvent.setEventName(eventDetails.getEventName());
-            updatedEvent.setEventDate(eventDetails.getEventDate());
-            updatedEvent.setLocation(eventDetails.getLocation());
-            updatedEvent.setDescription(eventDetails.getDescription());
-            eventService.saveEvent(updatedEvent);
+        Event event = eventService.getEventById(id);
+        if (event != null) {
+            event.setEventName(eventDetails.getEventName());
+            event.setEventDate(eventDetails.getEventDate());
+            event.setLocation(eventDetails.getLocation());
+            event.setDescription(eventDetails.getDescription());
+            Event updatedEvent = eventService.saveEvent(event);
             return ResponseEntity.ok(updatedEvent);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value="/{id}")
     public ResponseEntity<Void> deleteEvent(@PathVariable Long id) {
         eventService.deleteEvent(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/register")
+    public ResponseEntity<Event> registerUserForEvent(@RequestBody RegistrationRequest request) {
+
+        try {
+            Event updatedEvent = eventService.registerUserForEvent(request.getEventId(), request.getUserId());
+            return ResponseEntity.ok(updatedEvent);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+
+    public static class RegistrationRequest {
+        private Long eventId;
+        private Long userId;
+        private String password;
+
+
+        // Getters and setters
+        public Long getEventId() {
+            return eventId;
+        }
+
+        public void setEventId(Long eventId) {
+            this.eventId = eventId;
+        }
+
+        public Long getUserId() {
+            return userId;
+        }
+
+        public void setUserId(Long userId) {
+            this.userId = userId;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+
+    }
+
 }

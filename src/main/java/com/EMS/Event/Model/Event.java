@@ -1,9 +1,12 @@
 package com.EMS.Event.Model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.util.Date;
+
+import java.util.HashSet;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "event")
@@ -16,12 +19,15 @@ public class Event {
 
     private String eventName;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date eventDate;
 
     private String location;
 
     private String description;
+
+    @OneToMany(mappedBy = "events")
+
+    private Set<User> registeredUsers = new HashSet<>();
 
     // Getters and Setters
     public Long getEventId() {
@@ -63,5 +69,16 @@ public class Event {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Set<User> getRegisteredUsers() {
+        return registeredUsers;
+    }
+
+    public void setRegisteredUsers(Set<User> registeredUsers) {
+        this.registeredUsers = registeredUsers;
+    }
+
+
+
 }
 
