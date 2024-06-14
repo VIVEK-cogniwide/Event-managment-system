@@ -1,6 +1,8 @@
 package com.EMS.Event.Controller;
 import com.EMS.Event.Model.Event;
 import com.EMS.Event.Service.EventService;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
@@ -11,7 +13,6 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/events")
 @CrossOrigin(origins = "http://localhost:3000")
 public class EventController {
 
@@ -19,36 +20,28 @@ public class EventController {
     @Autowired
     private EventService eventService;
 
-    @GetMapping
+    @GetMapping(value = "/events-get")
     public List<Event> getAllEvents() {
         return eventService.getAllEvents();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Event> getEventById(@PathVariable Long id) {
-        Event event = eventService.getEventById(id);
+    public ResponseEntity<Event> getEventByEventId(@PathVariable Long id) {
+        Event event = eventService.getEventByEventId(id);
         return ResponseEntity.ok(event);
     }
 
 
-    @PostMapping
-    public ResponseEntity<Event> createEvent(@RequestBody String title,
-    @RequestBody String description,
-    @RequestBody  Date date,
-    @RequestBody String location)
-     {
-        Event event = new Event();
-        event.setEventName(title);
-        event.setDescription(description);
-        event.setEventDate(date);
-        event.setLocation(location);
+    @PostMapping(value = "/events-register")
+    public ResponseEntity<Event> createEvent(@RequestBody Event event)
+    {
         Event createdEvent = eventService.saveEvent(event);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdEvent);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Event> updateEvent(@PathVariable Long id, @RequestBody Event eventDetails) {
-        Event event = eventService.getEventById(id);
+        Event event = eventService.getEventByEventId(id);
         if (event != null) {
             event.setEventName(eventDetails.getEventName());
             event.setEventDate(eventDetails.getEventDate());
@@ -78,36 +71,13 @@ public class EventController {
         }
     }
 
+    @Setter
+    @Getter
     public static class RegistrationRequest {
+        // Getters and setters
         private Long eventId;
         private Long userId;
         private String password;
-
-
-        // Getters and setters
-        public Long getEventId() {
-            return eventId;
-        }
-
-        public void setEventId(Long eventId) {
-            this.eventId = eventId;
-        }
-
-        public Long getUserId() {
-            return userId;
-        }
-
-        public void setUserId(Long userId) {
-            this.userId = userId;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
 
 
     }

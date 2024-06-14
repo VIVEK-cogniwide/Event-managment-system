@@ -5,6 +5,7 @@ import com.EMS.Event.Repository.EventRepository;
 import com.EMS.Event.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.EMS.Event.Security.Security;
 
 import java.util.List;
 import java.util.Set;
@@ -18,7 +19,8 @@ public class UserService {
     private EventRepository eventrepository;
 
     public User saveUser(User user) {
-
+        String hashedPassword = Security.hashPassword(user.getPassword());
+        user.setPassword(hashedPassword);
         return userRepository.save(user);
     }
     public List<User> getAllUsers() {
@@ -41,7 +43,11 @@ public class UserService {
 
     public boolean authenticateUser(String email, String password) {
         User user = getUserByEmail(email);
-        return user != null && user.getPassword().equals(password);
+        if (user != null) {
+            String hashedPassword = Security.hashPassword(password);
+            return user.getPassword().equals(hashedPassword);
+        }
+        return false;
     }
 
     public User registerUserForEvent(Long eventId, Long userId, String password) {

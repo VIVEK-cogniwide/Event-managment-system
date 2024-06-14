@@ -27,7 +27,7 @@ public class EventService {
         return eventrepository.findAll();
     }
 
-    public Event getEventById(Long id) {
+    public Event getEventByEventId(Long id) {
         return eventrepository.findById(id).orElse(null);
     }
 
@@ -40,7 +40,7 @@ public class EventService {
 
     public Event registerUserForEvent(Long eventId, Long userId) {
 
-        Event event = getEventById(eventId);
+        Event event = getEventByEventId(eventId);
         User user = userRepository.findById(userId).orElse(null);
         if (event != null && user != null) {
             event.getRegisteredUsers().add(user);
