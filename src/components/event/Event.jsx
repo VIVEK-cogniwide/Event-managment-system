@@ -7,11 +7,11 @@ import "../event/Event.css";
 
 const Event = () => {
   const [eventData, setEventData] = useState({
-    title: "",
+    eventName: "",
     description: "",
-    date: "",
-    location: "",
-    image: null
+    eventDate: "",
+    location: ""
+    
   });
 
   const handleChange = (e) => {
@@ -21,26 +21,21 @@ const Event = () => {
     });
   };
 
-  const handleFileChange = (e) => {
-    setEventData({
-        ...eventData,
-        image: e.target.files[0]
-    });
-};
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
     var formData = new FormData();
-    formData.append("title", eventData.title);
+    formData.append("title", eventData.eventName);
     formData.append("description", eventData.description);
-    formData.append("date", eventData.date);
+    formData.append("date", eventData.eventDate);
     formData.append("location", eventData.location);
     
    
   
-    axios.post('http://localhost:8080/events', formData, {
+    axios.post('http://localhost:8080/events-register', formData, {
       headers: {
-        'Content-Type': 'multipart/form-data'
+        'Content-Type': 'application/json'
       }
     })
     .then(response => {

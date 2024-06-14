@@ -102,6 +102,9 @@ h2{
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+    max-width: fit-content;
+    max-height:min-content;
+    
   }
   
   .modal-content h2 {

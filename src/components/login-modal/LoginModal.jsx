@@ -13,7 +13,7 @@ const LoginModal = ({ onClose, onLogin }) => {
 
     e.preventDefault();
     
-        axios.post('http://localhost:8080/events/login', {params:{ email, password },})
+        axios.post('http://localhost:8080/user-login', {params:{ email, password },})
             .then(response => {
                 onLogin(response.data);
                 onClose();

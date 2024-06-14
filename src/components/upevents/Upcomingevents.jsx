@@ -26,7 +26,7 @@ const UpcomingEvents = () => {
   useEffect(() => {
     
     axios
-      .get("http://localhost:8080/events")
+      .get("http://localhost:8080/events-get")
       .then((response) => {
         setEvents(response.data);
       })
@@ -45,7 +45,7 @@ const UpcomingEvents = () => {
       userId: parseInt(userId),
       password: password,
     };
-    axios.post(`http://localhost:8080/events/register`,requestBody)
+    axios.post(`http://localhost:8080/events`,requestBody)
       .then((response) => {
         console.log('User registered for event:', response.data);
         window.alert('Successfully registered for the event');
