@@ -102,8 +102,8 @@ h2{
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    max-width: fit-content;
-    max-height:min-content;
+    max-width: 460px; /* add this line */
+    margin: 40px auto;
     
   }
   
@@ -113,6 +113,7 @@ h2{
   
   .modal-content p {
     margin: 10px 0;
+    font-size: 12px;
   }
   
   .modal-content button {

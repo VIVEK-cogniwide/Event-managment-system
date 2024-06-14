@@ -75,7 +75,7 @@ const UpcomingEvents = () => {
           <div key={event.id} className="event-card">
             <article className="card-code">
               <div className="card-int">
-                <span className="card__span"><BsFillCalendar2DateFill />{event.eventDate}</span>
+                <span className="card__span"><BsFillCalendar2DateFill />{new Date(event.eventDate).toDateString()}</span>
                 <div className="img">
                   <img src={eventsda} alt=""/>
                 </div>
