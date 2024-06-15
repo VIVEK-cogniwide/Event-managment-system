@@ -132,6 +132,9 @@ h2{
   .modal-content form{
     align-items: center;
   }
+  .small-input input{
+    width: 100px;
+  }
 
   .modal-content input{
     width: 200px;
