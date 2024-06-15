@@ -10,8 +10,8 @@ const Event = () => {
     title: "",
     description: "",
     date: "",
-    location: "",
-    image: null
+    location: ""
+    
   });
 
   const handleChange = (e) => {
@@ -21,12 +21,7 @@ const Event = () => {
     });
   };
 
-  const handleFileChange = (e) => {
-    setEventData({
-        ...eventData,
-        image: e.target.files[0]
-    });
-};
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,6 +30,7 @@ const Event = () => {
     formData.append("description", eventData.description);
     formData.append("date", eventData.date);
     formData.append("location", eventData.location);
+    
     
    
   
@@ -98,6 +94,7 @@ const Event = () => {
               onChange={handleChange}
             />
           </div>
+          
           
           <button type="submit">Create Event</button>
         </form>
