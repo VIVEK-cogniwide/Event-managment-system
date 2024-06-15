@@ -13,7 +13,9 @@ const UpcomingEvents = () => {
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    axios.get("http://localhost:8080/events-get")
+    
+    axios
+      .get("http://localhost:8080/events")
       .then((response) => {
         setEvents(response.data);
       })
@@ -33,8 +35,7 @@ const UpcomingEvents = () => {
       userId: parseInt(userId),
       password: password,
     };
-
-    axios.post("http://localhost:8080/users/register-event", requestBody)
+    axios.post(`http://localhost:8080/events/register`,requestBody)
       .then((response) => {
         console.log('User registered for event:', response.data);
         window.alert('Successfully registered for the event');
@@ -64,7 +65,7 @@ const UpcomingEvents = () => {
           <div key={event.id} className="event-card">
             <article className="card-code">
               <div className="card-int">
-                <span className="card__span"><BsFillCalendar2DateFill />  {new Date(event.eventDate).toLocaleDateString()}</span>
+                <span className="card__span"><BsFillCalendar2DateFill />{event.eventDate}</span>
                 <div className="img">
                   <img src={eventsda} alt="event" />
                 </div>

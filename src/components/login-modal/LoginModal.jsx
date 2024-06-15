@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../login-modal/LoginModal.css";
 
-const Login = () => {
+const Login = ({ onLogin, onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
@@ -11,6 +11,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
 
     axios
       .post("http://localhost:8080/user-login", { email, password })
@@ -49,6 +50,17 @@ const Login = () => {
       .catch((error) => {
         console.error("Error logging out:", error);
       });
+
+    
+        axios.post('http://localhost:8080/user-login', {params:{ email, password },})
+            .then(response => {
+                onLogin(response.data);
+                onClose();
+            })
+            .catch(error => {
+                console.error('Error logging in:', error);
+            });
+
   };
 
   return (
