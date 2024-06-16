@@ -9,12 +9,8 @@ const Event = () => {
   const [eventData, setEventData] = useState({
     eventName: "",
     description: "",
-
-    date: "",
-
     eventDate: "",
-
-    location: ""
+    location: "",
     
   });
 

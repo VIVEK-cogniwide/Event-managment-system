@@ -41,13 +41,13 @@ const Login = ({ onLogin, onClose }) => {
 
   const handleLogout = () => {
     axios
-      .post("http://localhost:8080/user-logout")
-      .then((response) => {
+     .post("http://localhost:8080/user-logout")
+     .then((response) => {
         setUser(null);
         setEvents([]);
         setIsLoggedIn(false);
       })
-      .catch((error) => {
+     .catch((error) => {
         console.error("Error logging out:", error);
       });
 
