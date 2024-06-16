@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../login-modal/LoginModal.css";
+import { Navigate } from "react-router-dom";
 
 const Login = ({ onLogin, onClose }) => {
   const [email, setEmail] = useState("");
@@ -29,7 +30,7 @@ const Login = ({ onLogin, onClose }) => {
   useEffect(() => {
     if (user) {
       axios
-        .get(`http://localhost:8080//{userId}/events`)
+        .get(`http://localhost:8080/{userId}/events`)
         .then((response) => {
           setEvents(response.data);
         })
@@ -46,6 +47,7 @@ const Login = ({ onLogin, onClose }) => {
         setUser(null);
         setEvents([]);
         setIsLoggedIn(false);
+        Navigate('/');
       })
      .catch((error) => {
         console.error("Error logging out:", error);
@@ -90,7 +92,7 @@ const Login = ({ onLogin, onClose }) => {
         </div>
       ) : (
         <div>
-          <h2>Welcome, </h2>
+          <h2>Welcome, {user && user.firstName ? user.firstName : 'User'}</h2>
           <h3>Your Enrolled Events:</h3>
           {events.length > 0 ? (
             <ul>
