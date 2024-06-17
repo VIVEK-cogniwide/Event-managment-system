@@ -51,6 +51,7 @@ button[type="submit"]:hover {
   gap: 20px;
 }
 
+
 .logout-button:hover {
   background-color: #cc0000;
 }

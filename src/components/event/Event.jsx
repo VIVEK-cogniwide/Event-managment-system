@@ -10,7 +10,7 @@ const Event = () => {
     eventName: "",
     description: "",
     eventDate: "",
-    location: ""
+    location: "",
     
   });
 
@@ -30,6 +30,7 @@ const Event = () => {
     formData.append("description", eventData.description);
     formData.append("date", eventData.eventDate);
     formData.append("location", eventData.location);
+    
     
    
   
@@ -93,6 +94,7 @@ const Event = () => {
               onChange={handleChange}
             />
           </div>
+          
           
           <button type="submit">Create Event</button>
         </form>

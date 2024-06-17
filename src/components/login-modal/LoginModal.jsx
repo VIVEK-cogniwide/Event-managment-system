@@ -14,8 +14,10 @@ const Login = ({ onLogin, onClose }) => {
     e.preventDefault();
 
 
-    axios
-      .post("http://localhost:8080/login-user", { email, password })
+    axios.post("http://localhost:8080/login-user", { email, password })
+
+      
+
       .then((response) => {
         setUser(response.data.user);
         setEvents(response.data.events);
@@ -40,6 +42,7 @@ const Login = ({ onLogin, onClose }) => {
     }
   }, [user]);
 
+
   const handleUpdateEvent = (eventId, updatedEvent) => {
     axios
       .patch(`http://localhost:8080/{eventId}/events`, updatedEvent)
@@ -63,6 +66,7 @@ const Login = ({ onLogin, onClose }) => {
         console.error("Error deleting event:", error);
       });
   };
+
 
   const handleLogout = () => {
     axios
@@ -123,6 +127,7 @@ const Login = ({ onLogin, onClose }) => {
               {events.map((event) => (
                 <li key={event.id}>
                   <h4>{event.eventName}</h4>
+
                   <p><b>DATE:</b> {new Date(event.eventDate).toLocaleDateString()}</p>
                   <p><b>LOCATION:</b> {event.location}</p>
                   <p><b>DESCRIPTION:</b> {event.description}</p>
@@ -133,7 +138,7 @@ const Login = ({ onLogin, onClose }) => {
                   <button type="button" onClick={() => handleDeleteEvent(event.id)}>
                     Delete
                   </button>
-                  <button onClick={handleLogout}>Logout</button>
+                  
                   </div>
                   
                  
@@ -143,11 +148,17 @@ const Login = ({ onLogin, onClose }) => {
               ))}
               
 
+
+                
+              
+
             </ul>
           ) : (
             <p>You have not enrolled in any events.</p>
           )}
-         
+
+          <button onClick={handleLogout}>Logout</button>
+
         </div>
       )}
     </div>
