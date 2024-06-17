@@ -45,7 +45,7 @@ const UpcomingEvents = () => {
       userId: parseInt(userId),
       password: password,
     };
-    axios.post(`http://localhost:8080/events`,requestBody)
+    axios.post(`http://localhost:8080/register`,requestBody)
       .then((response) => {
         console.log('User registered for event:', response.data);
         window.alert('Successfully registered for the event');

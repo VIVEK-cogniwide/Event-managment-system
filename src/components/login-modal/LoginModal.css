@@ -46,6 +46,11 @@ button[type="submit"]:hover {
   cursor: pointer;
 }
 
+.button-groups{
+  display: flex;
+  gap: 20px;
+}
+
 .logout-button:hover {
   background-color: #cc0000;
 }

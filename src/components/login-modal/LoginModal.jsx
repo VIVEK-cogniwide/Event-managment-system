@@ -40,6 +40,30 @@ const Login = ({ onLogin, onClose }) => {
     }
   }, [user]);
 
+  const handleUpdateEvent = (eventId, updatedEvent) => {
+    axios
+      .patch(`http://localhost:8080/{eventId}/events`, updatedEvent)
+      .then((response) => {
+        setEvents((prevEvents) =>
+          prevEvents.map((event) => (event.id === eventId ? updatedEvent : event))
+        );
+      })
+      .catch((error) => {
+        console.error("Error updating event:", error);
+      });
+  };
+
+  const handleDeleteEvent = (eventId) => {
+    axios
+      .delete(`http://localhost:8080/{eventId}/events`)
+      .then((response) => {
+        setEvents((prevEvents) => prevEvents.filter((event) => event.id !== eventId));
+      })
+      .catch((error) => {
+        console.error("Error deleting event:", error);
+      });
+  };
+
   const handleLogout = () => {
     axios
      .post("http://localhost:8080/user-logout")
@@ -102,13 +126,28 @@ const Login = ({ onLogin, onClose }) => {
                   <p><b>DATE:</b> {new Date(event.eventDate).toLocaleDateString()}</p>
                   <p><b>LOCATION:</b> {event.location}</p>
                   <p><b>DESCRIPTION:</b> {event.description}</p>
+                  <div className="button-groups">
+                  <button type="button" onClick={() => handleUpdateEvent(event.id, { /* updated event data */ })}>
+                    Update
+                  </button><br></br>
+                  <button type="button" onClick={() => handleDeleteEvent(event.id)}>
+                    Delete
+                  </button>
+                  <button onClick={handleLogout}>Logout</button>
+                  </div>
+                  
+                 
                 </li>
+                
+               
               ))}
+              
+
             </ul>
           ) : (
             <p>You have not enrolled in any events.</p>
           )}
-          <button onClick={handleLogout}>Logout</button>
+         
         </div>
       )}
     </div>
