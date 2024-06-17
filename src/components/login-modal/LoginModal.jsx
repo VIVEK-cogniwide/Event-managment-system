@@ -3,6 +3,7 @@ import axios from "axios";
 import "../login-modal/LoginModal.css";
 import { Navigate } from "react-router-dom";
 
+
 const Login = ({ onLogin, onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -43,19 +44,7 @@ const Login = ({ onLogin, onClose }) => {
   }, [user]);
 
 
-  const handleUpdateEvent = (eventId, updatedEvent) => {
-    axios
-      .patch(`http://localhost:8080/{eventId}/events`, updatedEvent)
-      .then((response) => {
-        setEvents((prevEvents) =>
-          prevEvents.map((event) => (event.id === eventId ? updatedEvent : event))
-        );
-      })
-      .catch((error) => {
-        console.error("Error updating event:", error);
-      });
-  };
-
+  
   const handleDeleteEvent = (eventId) => {
     axios
       .delete(`http://localhost:8080/{eventId}/events`)
@@ -66,6 +55,11 @@ const Login = ({ onLogin, onClose }) => {
         console.error("Error deleting event:", error);
       });
   };
+
+  
+
+
+  
 
 
   const handleLogout = () => {
@@ -120,7 +114,7 @@ const Login = ({ onLogin, onClose }) => {
         </div>
       ) : (
         <div>
-          <h2>Welcome, {user && user.firstName ? user.firstName : 'User'}</h2>
+          <h2>Welcome, {user && user.id ? user.id: 'User'}</h2>
           <h3>Your Enrolled Events:</h3>
           {events.length > 0 ? (
             <ul>
@@ -132,9 +126,7 @@ const Login = ({ onLogin, onClose }) => {
                   <p><b>LOCATION:</b> {event.location}</p>
                   <p><b>DESCRIPTION:</b> {event.description}</p>
                   <div className="button-groups">
-                  <button type="button" onClick={() => handleUpdateEvent(event.id, { /* updated event data */ })}>
-                    Update
-                  </button><br></br>
+                  <br></br>
                   <button type="button" onClick={() => handleDeleteEvent(event.id)}>
                     Delete
                   </button>
@@ -161,6 +153,7 @@ const Login = ({ onLogin, onClose }) => {
 
         </div>
       )}
+      
     </div>
   );
 };

@@ -37,7 +37,7 @@ const UpcomingEvents = () => {
     };
 
   
-    axios.post(`http://localhost:8080/registering-event`,requestBody)
+    axios.post(`http://localhost:8080/register`,requestBody)
 
       .then((response) => {
         console.log('User registered for event:', response.data);
