@@ -1,32 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../login-modal/LoginModal.css";
 import { Navigate } from "react-router-dom";
 
-import "../login-modal/LoginModal.css";
-
-const LoginModal = ({ onClose, onLogin }) => {
+const Login = ({ onLogin, onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
   const [events, setEvents] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
 
   const handleSubmit = (e) => {
-   
-   
-
     e.preventDefault();
-    
-        axios.post('http://localhost:8080/login-user', {params:{ email, password },})
-            .then(response => {
-                onLogin(response.data);
-                onClose();
-            })
-            .catch(error => {
-                console.error('Error logging in:', error);
-            });
+
+
+    axios
+      .post("http://localhost:8080/login-user", { email, password })
+      .then((response) => {
+        setUser(response.data.user);
+        setEvents(response.data.events);
+        setIsLoggedIn(true);
+      })
+      .catch((error) => {
+        console.error("Error logging in:", error);
+        alert("Invalid email or password");
+      });
   };
+
+  useEffect(() => {
+    if (user) {
+      axios
+        .get(`http://localhost:8080/{userId}/events`)
+        .then((response) => {
+          setEvents(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching user events:", error);
+        });
+    }
+  }, [user]);
 
   const handleLogout = () => {
     axios
@@ -87,9 +99,9 @@ const LoginModal = ({ onClose, onLogin }) => {
               {events.map((event) => (
                 <li key={event.id}>
                   <h4>{event.eventName}</h4>
-                  <p>Date: {new Date(event.eventDate).toLocaleDateString()}</p>
-                  <p>Location: {event.location}</p>
-                  <p>Description: {event.description}</p>
+                  <p><b>DATE:</b> {new Date(event.eventDate).toLocaleDateString()}</p>
+                  <p><b>LOCATION:</b> {event.location}</p>
+                  <p><b>DESCRIPTION:</b> {event.description}</p>
                 </li>
               ))}
             </ul>
@@ -103,4 +115,4 @@ const LoginModal = ({ onClose, onLogin }) => {
   );
 };
 
-export default LoginModal;
+export default Login;
