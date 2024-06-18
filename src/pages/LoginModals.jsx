@@ -1,8 +1,6 @@
 import React from "react";
 
-import Nav  from "../components/navbar/Nav";
-
-import { useState } from "react";
+import Nav from "../components/navbar/Nav";
 
 import LoginModal from "../components/login-modal/LoginModal";
 
@@ -14,10 +12,7 @@ const LoginModals = () => {
     return(
         <>
         <Nav/>
-
         <LoginModal/>
-        
-
         <Foot/>
         </>
         

@@ -3,8 +3,21 @@
   margin: 40px auto;
   padding: 20px;
   border: 1px solid #ddd;
+  background-color: rgba(65, 105, 225, 0.201);
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.register-link {
+  margin-top: 10px;
+}
+
+.register-link button {
+  background: none;
+  border: none;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .form-group {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../login-modal/LoginModal.css";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const Login = ({ onLogin, onClose }) => {
@@ -10,6 +10,7 @@ const Login = ({ onLogin, onClose }) => {
   const [user, setUser] = useState(null);
   const [events, setEvents] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -56,7 +57,9 @@ const Login = ({ onLogin, onClose }) => {
       });
   };
 
-  
+  const handleRegisterRedirect = () => {
+    navigate("/starts");
+  };
 
 
   
@@ -69,7 +72,7 @@ const Login = ({ onLogin, onClose }) => {
         setUser(null);
         setEvents([]);
         setIsLoggedIn(false);
-        Navigate('/');
+        navigate('/');
       })
      .catch((error) => {
         console.error("Error logging out:", error);
@@ -110,7 +113,12 @@ const Login = ({ onLogin, onClose }) => {
               />
             </div>
             <button type="submit">Login</button>
+            
           </form>
+          <div className="register-link">
+        <p>Don't have an account? <button onClick={handleRegisterRedirect}>Register</button></p>
+      </div>
+          
         </div>
       ) : (
         <div>
