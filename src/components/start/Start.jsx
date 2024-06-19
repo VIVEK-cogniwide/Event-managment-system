@@ -2,6 +2,7 @@ import React from "react";
 import "../start/Start.css";
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import illustrate from "../../assets/undraw_access_account_re_8spm.svg";
 
 const Start = () => {
@@ -23,11 +24,12 @@ const Start = () => {
     });
   };
 
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     
 
-    axios.get('http://localhost:8080/register-user')
+    axios.get('http://localhost:8080/register-get')
     axios.post(`http://localhost:8080/register-user`, {
         firstname: Data.firstname,
             lastname: Data.lastname,
@@ -38,6 +40,7 @@ const Start = () => {
       })
       .then((response) => {
         console.log("User registered:", response.data);
+        navigate("/"); 
       })
       .catch((error) => {
         console.error("Error registering user:", error);

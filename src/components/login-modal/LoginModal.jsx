@@ -24,6 +24,7 @@ const Login = ({ onLogin, onClose }) => {
         setUser(response.data.user);
         setEvents(response.data.events);
         setIsLoggedIn(true);
+        
       })
       .catch((error) => {
         console.error("Error logging in:", error);
