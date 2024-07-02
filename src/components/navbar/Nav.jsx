@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
-import { useState } from "react";
 import { NavLink } from 'react-router-dom';
 import { MdHub } from "react-icons/md";
 import "../navbar/Nav.css";

@@ -2,7 +2,7 @@ import React from "react";
 
 import { NavLink } from "react-router-dom";
 
-import { useState } from "react";
+
 
 import image from "../../assets/undraw_completed_tasks_vs6q.svg";
 
@@ -43,7 +43,7 @@ const Page = () => {
               activeClassName="active"
               className="start-link"
             >
-              <b>START --></b>
+              <b>START --</b>
             </NavLink>
             
           </div>
