@@ -49,7 +49,7 @@ const Start = () => {
   return (
     <div className="content">
       <div className="illustrate">
-        <img src={illustrate} alt="" />
+        <img src={illustrate} alt="desc" />
       </div>
       <form className="form" onSubmit={handleSubmit}>
         <p className="title">Register </p>

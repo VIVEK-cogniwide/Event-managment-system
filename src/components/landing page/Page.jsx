@@ -49,7 +49,7 @@ const Page = () => {
           </div>
         </div>
         <div className="image">
-          <img src={image} alt=""/>
+          <img src={image} alt="desc"/>
         </div>
       </div>
       <div className="goal">
@@ -76,7 +76,7 @@ const Page = () => {
       </div>
       <div className="choose">
         <div className="choose-image">
-          <img src={choose} alt="" />
+          <img src={choose} alt="desc" />
         </div>
 
         <div className="choose-text">

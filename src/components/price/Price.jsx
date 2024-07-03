@@ -18,12 +18,12 @@ const Price = () => {
       <h2 className="header">
         <b>Features</b>
         <br></br>
-        <img src={underline} />
+        <img src={underline} alt="desc"/>
       </h2>
       <div className="pricing">
         <div className="card-1">
           <div className="image-1">
-            <img src={img_1} alt="" />
+            <img src={img_1} alt="desc" />
           </div>
           <div className="content-1">
             <a href="#">
@@ -41,10 +41,10 @@ const Price = () => {
 
         <div className="card-1">
           <div className="image-1">
-            <img src={img_2} alt="" />
+            <img src={img_2} alt="desc" />
           </div>
           <div className="content-1">
-            <a href="#">
+            <a>
               <span className="title-1">
                 <b>Customizable from A to Z</b>
               </span>
@@ -59,10 +59,10 @@ const Price = () => {
 
         <div className="card-1">
           <div className="image-1">
-            <img src={img_3} alt="" />
+            <img src={img_3} alt="desc" />
           </div>
           <div className="content-1">
-            <a href="#">
+            <a>
               <span className="title-1">
                 <b>All event data in your hands</b>
               </span>
@@ -77,7 +77,7 @@ const Price = () => {
         </div>
       </div>
      
-        <h2 className="header"><b>Subscribe </b><br></br><img src={underline} /></h2>
+        <h2 className="header"><b>Subscribe </b><br></br><img src={underline} alt="desc"/></h2>
         <div className="file">
       <div className="subscribe"><h3 className="sub-head">Subscribe and <br></br>get in touch with<br></br> us.</h3><img src={news} alt=""/></div>
       <div className="popup">
