@@ -53,7 +53,7 @@ const Page = () => {
         </div>
       </div>
       <div className="goal">
-        <h2 className="header"><b>Goals</b><br></br><img src={underline} /></h2>
+        <h2 className="header"><b>Goals</b><br></br><img src={underline} alt="desc"/></h2>
         <div className="passage">
           <p>
             &diams; To provide comprehensive resources and tools for event
