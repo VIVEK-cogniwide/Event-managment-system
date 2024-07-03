@@ -74,11 +74,11 @@ public class UserController {
         return events != null ? ResponseEntity.ok(events) : ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/register-event")
+    @PostMapping("/registering-event")
     public ResponseEntity<Event> registerUserForEvent(@RequestParam Long eventId, @RequestParam Long userId, @RequestParam String password) {
-
+        User user = userService.getUserById(userId);
         try {
-            User user = userService.registerUserForEvent(eventId, userId, password);
+            User registeruser = userService.registerUserForEvent(eventId, userId, password);
             Event event = userService.getEventById(eventId);
             return ResponseEntity.ok(event);
         } catch (RuntimeException e) {
