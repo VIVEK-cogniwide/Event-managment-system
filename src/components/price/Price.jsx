@@ -26,7 +26,7 @@ const Price = () => {
             <img src={img_1} alt="desc" />
           </div>
           <div className="content-1">
-            <a href="#">
+            <a href="https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md">
               <span className="title-1">
                 <b>Customized to your event</b>
               </span>
@@ -44,7 +44,7 @@ const Price = () => {
             <img src={img_2} alt="desc" />
           </div>
           <div className="content-1">
-            <a>
+            <a href="https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md">
               <span className="title-1">
                 <b>Customizable from A to Z</b>
               </span>
@@ -62,7 +62,7 @@ const Price = () => {
             <img src={img_3} alt="desc" />
           </div>
           <div className="content-1">
-            <a>
+            <a href="https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md">
               <span className="title-1">
                 <b>All event data in your hands</b>
               </span>
