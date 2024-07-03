@@ -6,6 +6,7 @@ import com.EMS.Event.Security.Security;
 import com.EMS.Event.Service.UserService;
 import lombok.Getter;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,8 +47,8 @@ public class UserController {
         return ResponseEntity.status(401).build();
     }
 
-    @PostMapping("/user-login")
-    public ResponseEntity<User> loginUser(@RequestBody UserLoginRequest loginRequest) {
+    @PostMapping("/login-user")
+    public ResponseEntity<User> loginUser(@RequestBody @NotNull UserLoginRequest loginRequest) {
         String hashedPassword = Security.hashPassword(loginRequest.getPassword());
         boolean authenticated = userService.authenticateUser(loginRequest.getEmail(),hashedPassword);
         if (authenticated) {
