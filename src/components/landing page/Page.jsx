@@ -2,8 +2,6 @@ import React from "react";
 
 import { NavLink } from "react-router-dom";
 
-
-
 import image from "../../assets/undraw_completed_tasks_vs6q.svg";
 
 import "../landing page/Page.css";
