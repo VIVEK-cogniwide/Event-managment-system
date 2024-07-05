@@ -89,8 +89,7 @@ const Page = () => {
             <br></br>
            <b> Comprehensive Support:</b> <i>Plans that grow with your event needs.</i>
             <br></br>
-           <b> Feature-Rich:</b>
-            <i>From ticketing to analytics, all tools in one place.</i>
+           
           </p>
         </div>
       </div>
