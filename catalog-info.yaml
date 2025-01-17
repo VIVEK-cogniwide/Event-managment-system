@@ -1,9 +1,10 @@
 apiVersion: backstage.io/v1alpha1
-kind: Location
+kind: Component
 metadata:
-  name: generated-9efd127f12e1665404e7bbf97d15dcc8e06c8154
+  name: VIVEK-cogniwide
   annotations:
-    backstage.io/techdocs-ref: url:https://github.com/VIVEK-cogniwide/Event-managment-system/edit/main/catalog-info.yaml
+    annotations:
+    github.com/project-slug: VIVEK-cogniwide/Event-managment-system
 spec:
-  type: url
-  owner: guests
+  lifecycle: dev
+  owner: platformteam
