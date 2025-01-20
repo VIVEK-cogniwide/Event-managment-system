@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: infrastructure
+  description: Cogniwide Infra Unit
+spec:
+  type: business-unit
+  profile:
+    displayName: Infrastructure
+    email: infrastructure@cogniwide.com
+  parent: ops
+  children: [backstage, other]
+  members: [jdoe, VIVEK-cogniwide]
