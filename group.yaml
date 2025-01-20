@@ -9,3 +9,4 @@ spec:
     displayName: Infrastructure
     email: infrastructure@cogniwide.com
   members: [jdoe, VIVEK-cogniwide]
+  children: []
