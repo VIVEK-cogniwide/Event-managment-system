@@ -8,6 +8,4 @@ spec:
   profile:
     displayName: Infrastructure
     email: infrastructure@cogniwide.com
-  parent: ops
-  children: [backstage, other]
   members: [jdoe, VIVEK-cogniwide]
