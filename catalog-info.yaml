@@ -1,8 +1,10 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: VIVEK-cogniwide-repo
-  description: Event managment system repository
+  name: my-service
+  annotations:
+    jenkins.io/job-full-name: 'folder/job-name'
+    jenkins.io/github-folder: 'organization/project-name'
 spec:
   type: service
   lifecycle: experimental
