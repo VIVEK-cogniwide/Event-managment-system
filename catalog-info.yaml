@@ -4,9 +4,9 @@ metadata:
   name: my-service
   description: Event managment system repository
   annotations:
-    jenkins.io/job-full-name: discovery-pipeline/discovery-pipeline
+    'jenkins.io/job-full-name': discovery-pipeline/discovery-pipeline
     # jenkins.io/github-folder: 'https://github.com/VIVEK-cogniwide/Event-managment-system'
 spec:
-  type: service
+  type: website
   lifecycle: experimental
   owner: user:VIVEK-cogniwide
