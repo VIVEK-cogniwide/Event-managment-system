@@ -4,7 +4,7 @@ metadata:
   name: my-service
   description: Event managment system repository
   annotations:
-    'jenkins.io/job-full-name': docker_job-1
+    'jenkins.io/job-full-name': job/docker_job-1
     # jenkins.io/github-folder: 'https://github.com/VIVEK-cogniwide/Event-managment-system'
 spec:
   type: service
