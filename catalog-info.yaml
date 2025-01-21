@@ -1,12 +1,12 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: my-service
-  description: Event managment system repository
+  name: pipeline-1
+  description: Jenkins pipeline
   annotations:
-    'jenkins.io/job-full-name': http://4.213.160.43:8080/job/docker_job-1/
+    'jenkins.io/job-full-name': docker_job-1
     # jenkins.io/github-folder: 'https://github.com/VIVEK-cogniwide/Event-managment-system'
 spec:
-  type: service
+  type: pipeline
   lifecycle: experimental
-  owner: user:VIVEK-cogniwide
+  owner: guests
