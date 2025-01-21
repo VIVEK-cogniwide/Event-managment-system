@@ -4,8 +4,8 @@ metadata:
   name: pipeline-1
   description: Jenkins pipeline
   annotations:
-     backstage.io/jenkins-only: 'true'
-    'jenkins.io/job-full-name': docker_job-1
+    backstage.io/jenkins-only: 'true'
+    jenkins.io/job-full-name: docker_job-1
     # jenkins.io/github-folder: 'https://github.com/VIVEK-cogniwide/Event-managment-system'
 spec:
   type: service
