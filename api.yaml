@@ -1,12 +1,12 @@
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
-  name: artist-api
-  description: Retrieve artist details
+  name: Cogniassist-frontend
+  description: Ingress URL for Cogniassist frontend 
 spec:
   type: openapi
-  lifecycle: production
-  owner: artist-relations-team
+  lifecycle: experimental
+  owner: user:VIVEK-cogniwide
   system: artist-engagement-portal
   definition: |
     openapi: "3.0.0"
@@ -16,7 +16,7 @@ spec:
       license:
         name: MIT
     servers:
-      - url: http://artist.spotify.net/v1
+      - url: http://4.224.107.150.nip.io/
     paths:
       /artists:
         get:
