@@ -12,12 +12,14 @@ spec:
     openapi: "3.0.0"
     info:
       version: 1.0.0
-      title: Artist API
-      license:
-        name: MIT
+      title: frontend
     servers:
       - url: http://4.224.107.150.nip.io/
     paths:
+      /backend:
         get:
-          summary: frontend UI
+          summary: backend
+      /discovery:
+        get:
+          summary: discovery API
     ...
