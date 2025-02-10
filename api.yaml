@@ -18,7 +18,6 @@ spec:
     servers:
       - url: http://4.224.107.150.nip.io/
     paths:
-      /artists:
         get:
-          summary: List all artists
+          summary: frontend UI
     ...
