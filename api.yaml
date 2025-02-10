@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
-  name: Cogniassist-frontend
-  description: Ingress URL for Cogniassist frontend 
+  name: Cogniassist
+  description: Ingress URL for Cogniassist Microservices
 spec:
   type: openapi
   lifecycle: experimental
@@ -19,7 +19,35 @@ spec:
       /backend:
         get:
           summary: backend
+          responses:
+            '200':
+              description: Success
+              content:
+                application/json:
+                  schema:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
       /discovery:
         get:
           summary: discovery API
+          responses:
+            '200':
+              description: Success
+              content:
+                application/json:
+                  schema:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
     ...
