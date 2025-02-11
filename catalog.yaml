@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: Terraform
+  description: Terraform Infra Repository
+  annotations:
+    backstage.io/source-location: "url:https://github.com/VIVEK-cogniwide/terraform_cloud"
+spec:
+  type: service
+  lifecycle: experimental
+  owner: user:VIVEK-cogniwide
