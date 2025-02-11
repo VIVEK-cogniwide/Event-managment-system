@@ -1,11 +1,10 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: pipeline-1
-  description: Jenkins pipeline
+  name: Release-Dashboard
+  description: Release Dashboard DOCS
   annotations:
-    backstage.io/jenkins-only: 'true'
-    jenkins.io/job-full-name: discovery-pipeline/discovery-pipeline
+    backstage.io/techdocs-ref: dir:.
     # jenkins.io/github-folder: 'https://github.com/VIVEK-cogniwide/Event-managment-system'
 spec:
   type: service
