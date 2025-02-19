@@ -36,7 +36,7 @@ spec:
       name: Fetch Terraform Module
       action: fetch:template
       input:
-        url: "https://github.com/VIVEK-cogniwide/terraform_cloud/tree/main/terraform_cloud_practicals/IAC/terraform/terraform-Modules/compute/virtual_machines"
+        url: "https://github.com/VIVEK-cogniwide/terraform_config_repo/tree/main/IAC/terraform/terraform-Modules/azuread/users"
         values:
           vm_name: ${{ parameters.vm_name }}
           region: ${{ parameters.region }}
