@@ -1,0 +1,57 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: vm-deployment-template
+  title: VM Deployment with Terraform
+  description: Template for deploying a VM using Terraform modules
+spec:
+  owner: "devops-team"
+  type: service
+
+  parameters:
+    - title: VM Configuration
+      required:
+        - vm_name
+        - region
+        - vm_size
+      properties:
+        vm_name:
+          title: VM Name
+          type: string
+          description: Name of the virtual machine
+        region:
+          title: Region
+          type: string
+          enum: ["eastus", "westus", "uksouth", "westeurope"]
+          default: "eastus"
+          description: Azure region
+        vm_size:
+          title: VM Size
+          type: string
+          default: "Standard_B2s"
+          description: Size of the VM
+
+  steps:
+    - id: fetch-template
+      name: Fetch Terraform Module
+      action: fetch:template
+      input:
+        url: "https://github.com/VIVEK-cogniwide/terraform_cloud/tree/main/terraform_cloud_practicals/IAC/terraform/terraform-Modules/compute/virtual_machines"
+        values:
+          vm_name: ${{ parameters.vm_name }}
+          region: ${{ parameters.region }}
+          vm_size: ${{ parameters.vm_size }}
+
+    - id: publish
+      name: Push Terraform Code to GitHub
+      action: publish:github
+      input:
+        allowedHosts: ["github.com"]
+        repoUrl: "github.com/your-org/{{ parameters.vm_name }}-vm"
+        defaultBranch: main
+        repoVisibility: private
+
+  output:
+    links:
+      - title: View Repository
+        url: https://github.com/your-org/{{ parameters.vm_name }}-vm
