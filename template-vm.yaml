@@ -1,57 +1,66 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: vm-deployment-template
-  title: VM Deployment with Terraform
-  description: Template for deploying a VM using Terraform modules
+  name: create-azure-ad-user
+  title: Create an Azure AD User
+  description: Template for creating an Azure AD user using Terraform
+  tags: ['azure', 'terraform', 'aad']
 spec:
-  owner: "devops-team"
+  owner: guests
   type: service
+  targets:
+    - https://github.com/VIVEK-cogniwide/terraform_cloud/tree/main/terraform_cloud_practicals/IAC/terraform/terraform-Modules/azure_ad
 
   parameters:
-    - title: VM Configuration
+    - title: Azure AD User Configuration
       required:
-        - vm_name
-        - region
-        - vm_size
+         - displayName
+         - mailNickname
+         - action
       properties:
-        vm_name:
-          title: VM Name
+        displayName:
+          title: Display Name
           type: string
-          description: Name of the virtual machine
-        region:
-          title: Region
+          description: Name of the Azure AD user
+
+        mailNickname:
+          title: Mail Nickname
           type: string
-          enum: ["eastus", "westus", "uksouth", "westeurope"]
-          default: "eastus"
-          description: Azure region
-        vm_size:
-          title: VM Size
+          description: Mail alias for the user
+
+        action:
+          title: Action
           type: string
-          default: "Standard_B2s"
-          description: Size of the VM
+          description: Select whether to apply (create) or destroy the user
+          enum:
+            - apply
+            - destroy
+
+    - title: Choose a Repository Location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: GitHub Repository URL
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
 
   steps:
+    # Fetch Terraform templates for Azure AD User
     - id: fetch-template
-      name: Fetch Terraform Module
+      name: Fetch Terraform Code
       action: fetch:template
       input:
-        url: "https://github.com/VIVEK-cogniwide/terraform_config_repo/tree/main/IAC/terraform/terraform-Modules/azuread/users"
+        url: "https://github.com/VIVEK-cogniwide/terraform_cloud/tree/main/terraform_cloud_practicals/IAC/terraform/terraform-Modules/azure_ad"
         values:
-          vm_name: ${{ parameters.vm_name }}
-          region: ${{ parameters.region }}
-          vm_size: ${{ parameters.vm_size }}
+          displayName: ${{ parameters.displayName }}
+          mailNickname: ${{ parameters.mailNickname }}
 
-    - id: publish
-      name: Push Terraform Code to GitHub
-      action: publish:github
-      input:
-        allowedHosts: ["github.com"]
-        repoUrl: "github.com/your-org/{{ parameters.vm_name }}-vm"
-        defaultBranch: main
-        repoVisibility: private
-
-  output:
+output:
     links:
-      - title: View Repository
-        url: https://github.com/your-org/{{ parameters.vm_name }}-vm
+      - title: Open in Backstage Catalog
+        icon: catalog
+       
