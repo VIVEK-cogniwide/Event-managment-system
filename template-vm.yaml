@@ -1,37 +1,55 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: create-azure-ad-user
-  title: Create an Azure AD User
-  description: Template for creating an Azure AD user using Terraform
-  tags: ['azure', 'terraform', 'aad']
+  name: create-azure-vm
+  title: Create an Azure Virtual Machine
+  description: Template for creating an Azure Virtual Machine using Terraform
+  tags: ['azure', 'terraform', 'virtual-machine']
 spec:
   owner: guests
   type: service
   targets:
-    - https://github.com/VIVEK-cogniwide/terraform_cloud/tree/main/terraform_cloud_practicals/IAC/terraform/terraform-Modules/azure_ad
+    - https://github.com/VIVEK-cogniwide/terraform_cloud/tree/main/terraform_cloud_practicals/IAC/terraform/terraform-Modules/compute/virtual_machines
 
   parameters:
-    - title: Azure AD User Configuration
+    - title: Azure VM Configuration
       required:
-         - displayName
-         - mailNickname
+         - vmName
+         - region
+         - vmSize
          - action
       properties:
-        displayName:
-          title: Display Name
+        vmName:
+          title: Virtual Machine Name
           type: string
-          description: Name of the Azure AD user
+          description: Name of the Azure Virtual Machine
 
-        mailNickname:
-          title: Mail Nickname
+        region:
+          title: Azure Region
           type: string
-          description: Mail alias for the user
+          description: Azure region where the VM will be deployed (e.g., eastus, uksouth, westeurope)
+          enum:
+            - eastus
+            - westus
+            - uksouth
+            - westeurope
+          default: eastus
+
+        vmSize:
+          title: VM Size
+          type: string
+          description: Size of the virtual machine (e.g., Standard_B2s, Standard_D2s_v3)
+          enum:
+            - Standard_B2s
+            - Standard_D2s_v3
+            - Standard_F2s_v2
+            - Standard_E2s_v3
+          default: Standard_B2s
 
         action:
           title: Action
           type: string
-          description: Select whether to apply (create) or destroy the user
+          description: Select whether to apply (create) or destroy the VM
           enum:
             - apply
             - destroy
@@ -49,18 +67,29 @@ spec:
               - github.com
 
   steps:
-    # Fetch Terraform templates for Azure AD User
+    # Fetch Terraform templates for Azure VM
     - id: fetch-template
       name: Fetch Terraform Code
       action: fetch:template
       input:
-        url: "https://github.com/VIVEK-cogniwide/terraform_cloud/tree/main/terraform_cloud_practicals/IAC/terraform/terraform-Modules/azure_ad"
+        url: "https://github.com/VIVEK-cogniwide/terraform_cloud/tree/main/terraform_cloud_practicals/IAC/terraform/terraform-Modules/compute/virtual_machines"
         values:
-          displayName: ${{ parameters.displayName }}
-          mailNickname: ${{ parameters.mailNickname }}
+          vmName: ${{ parameters.vmName }}
+          region: ${{ parameters.region }}
+          vmSize: ${{ parameters.vmSize }}
 
-output:
+    
+
+    # Register the new VM in the Backstage catalog
+    - id: register
+      name: Register Component in Backstage Catalog
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+        catalogInfoPath: '/component-info.yaml' # Path to catalog info file
+
+  output:
     links:
       - title: Open in Backstage Catalog
         icon: catalog
-       
+        entityRef: ${{ steps['register'].output.entityRef }}
