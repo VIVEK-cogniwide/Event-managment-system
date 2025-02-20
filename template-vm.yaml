@@ -72,7 +72,7 @@ spec:
       name: Fetch Terraform Code
       action: fetch:template
       input:
-        url: "https://github.com/VIVEK-cogniwide/terraform_cloud/tree/main/terraform_cloud_practicals/IAC/terraform/terraform-Modules/compute/virtual_machines"
+        url: "git@github.com:VIVEK-cogniwide/terraform_cloud.git"
         values:
           vmName: ${{ parameters.vmName }}
           region: ${{ parameters.region }}
