@@ -10,20 +10,18 @@ spec:
   type: service
   targets:
     - https://github.com/VIVEK-cogniwide/terraform_cloud/tree/main/terraform_cloud_practicals/IAC/terraform/terraform-Modules/compute/virtual_machines
-
   parameters:
     - title: Azure VM Configuration
       required:
-         - vmName
-         - region
-         - vmSize
-         - action
+        - vmName
+        - region
+        - vmSize
+        - action
       properties:
         vmName:
           title: Virtual Machine Name
           type: string
           description: Name of the Azure Virtual Machine
-
         region:
           title: Azure Region
           type: string
@@ -34,7 +32,6 @@ spec:
             - uksouth
             - westeurope
           default: eastus
-
         vmSize:
           title: VM Size
           type: string
@@ -45,7 +42,6 @@ spec:
             - Standard_F2s_v2
             - Standard_E2s_v3
           default: Standard_B2s
-
         action:
           title: Action
           type: string
@@ -53,10 +49,8 @@ spec:
           enum:
             - apply
             - destroy
-
   
   steps:
-    # Fetch Terraform templates for Azure VM
     - id: fetch-template
       name: Fetch Terraform Code
       action: fetch:template
@@ -66,17 +60,14 @@ spec:
           vmName: ${{ parameters.vmName }}
           region: ${{ parameters.region }}
           vmSize: ${{ parameters.vmSize }}
-
-     - id: publish
-       name: Publish to GitHub
-       action: publish:github
-       input:
+    - id: publish
+      name: Publish to GitHub
+      action: publish:github
+      input:
         allowedHosts: ["github.com"]
         description: "Terraform configuration for Azure VM"
         repoUrl: https://github.com/VIVEK-cogniwide/terraform_cloud/
         defaultBranch: main
-
-    # Register the new VM in the Backstage catalog
     - id: register
       name: Register Component in Backstage Catalog
       action: catalog:register
