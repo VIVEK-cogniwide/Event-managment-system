@@ -54,18 +54,7 @@ spec:
             - apply
             - destroy
 
-    - title: Choose a Repository Location
-      required:
-        - repoUrl
-      properties:
-        repoUrl:
-          title: GitHub Repository URL
-          type: string
-          ui:field: RepoUrlPicker
-          ui:options:
-            allowedHosts:
-              - github.com
-
+  
   steps:
     # Fetch Terraform templates for Azure VM
     - id: fetch-template
@@ -78,7 +67,14 @@ spec:
           region: ${{ parameters.region }}
           vmSize: ${{ parameters.vmSize }}
 
-    
+     - id: publish
+      name: Publish to GitHub
+      action: publish:github
+      input:
+        allowedHosts: ["github.com"]
+        description: "Terraform configuration for Azure VM"
+        repoUrl: https://github.com/VIVEK-cogniwide/terraform_cloud/
+        defaultBranch: main
 
     # Register the new VM in the Backstage catalog
     - id: register
@@ -86,8 +82,6 @@ spec:
       action: catalog:register
       input:
         repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
-        catalogInfoPath: '/component-info.yaml' # Path to catalog info file
-
   output:
     links:
       - title: Open in Backstage Catalog
