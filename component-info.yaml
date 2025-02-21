@@ -3,7 +3,7 @@ kind: Component
 metadata:
   name: instance-automation 
   annotations:
-    github.com/project-slug: VIVEK-cogniwide/terraform_cloud 
+    github.com/project-slug: VIVEK-cogniwide/Event-managment-system
     backstage.io/managed-by-location: url:https://github.com/VIVEK-cogniwide/Event-managment-system/blob/main/template-vm.yaml
   title: 'IA for Instance Automation'
   description: An example of an Instance Creation. 
