@@ -1,12 +1,11 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: instance-automation 
+  name: instance-automation
+  description: "An automation component for instance management"
   annotations:
     github.com/project-slug: VIVEK-cogniwide/Event-managment-system
-    backstage.io/managed-by-location: url:https://github.com/VIVEK-cogniwide/Event-managment-system/blob/main/template-vm.yaml
-  title: 'IA for Instance Automation'
-  description: An example of an Instance Creation. 
+spec:
   type: service
-  owner: user:guest
-  lifecycle: experimental 
+  lifecycle: production
+  owner: dev-team
