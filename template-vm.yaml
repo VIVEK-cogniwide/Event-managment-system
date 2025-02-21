@@ -68,9 +68,9 @@ spec:
           vmSize: ${{ parameters.vmSize }}
 
      - id: publish
-      name: Publish to GitHub
-      action: publish:github
-      input:
+       name: Publish to GitHub
+       action: publish:github
+       input:
         allowedHosts: ["github.com"]
         description: "Terraform configuration for Azure VM"
         repoUrl: https://github.com/VIVEK-cogniwide/terraform_cloud/
