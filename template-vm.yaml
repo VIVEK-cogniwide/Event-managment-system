@@ -81,7 +81,7 @@ spec:
       name: Register Component in Backstage Catalog
       action: catalog:register
       input:
-        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+        catalogInfoUrl: "https://github.com/VIVEK-cogniwide/Event-managment-system/blob/main/component-info.yaml"
   output:
     links:
       - title: Open in Backstage Catalog
