@@ -60,14 +60,14 @@ spec:
           vmName: ${{ parameters.vmName }}
           region: ${{ parameters.region }}
           vmSize: ${{ parameters.vmSize }}
-    - id: publish
-      name: Publish to GitHub
-      action: publish:github
-      input:
-        allowedHosts: ["github.com"]
-        description: "Terraform configuration for Azure VM"
-        repoUrl: "github.com?owner=VIVEK-cogniwide&repo=terraform_cloud"
-        defaultBranch: main
+    # - id: publish
+    #   name: Publish to GitHub
+    #   action: publish:github
+    #   input:
+    #     allowedHosts: ["github.com"]
+    #     description: "Terraform configuration for Azure VM"
+    #     repoUrl: "github.com?owner=VIVEK-cogniwide&repo=terraform_cloud"
+    #     defaultBranch: main
     - id: register
       name: Register Component in Backstage Catalog
       action: catalog:register
