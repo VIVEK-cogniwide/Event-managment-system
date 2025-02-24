@@ -66,7 +66,7 @@ spec:
       input:
         allowedHosts: ['github.com']
         description: "Terraform configuration for Azure VM"
-        repoUrl: 'github.com?owner=VIVEK-cogniwide&repo=terraform_cloud'
+        repoUrl: 'github.com?owner=VIVEK-cogniwide&repo=terraform_idp_repo'
         defaultBranch: main
         sourcePath: './'
         enforceNoRepoCreation: true  # Prevent repository creation
