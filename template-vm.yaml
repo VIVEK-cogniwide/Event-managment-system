@@ -60,15 +60,26 @@ spec:
           vmName: ${{ parameters.vmName }}
           region: ${{ parameters.region }}
           vmSize: ${{ parameters.vmSize }}
-    - id: publish
+   - id: publish
       name: Publish to GitHub
       action: publish:github
       input:
-        allowedHosts: ["github.com"]
+        allowedHosts: ['github.com']
         description: "Terraform configuration for Azure VM"
-        repoUrl: "github.com?owner=VIVEK-cogniwide&repo=terraform_cloud"
+        repoUrl: 'github.com?owner=VIVEK-cogniwide&repo=terraform_cloud'
         defaultBranch: main
         sourcePath: './'
+        enforceNoRepoCreation: true  # Prevent repository creation
+        token: ${GITHUB_TOKEN}
+        commitMessage: "Add Azure VM configuration for ${{ parameters.vmName }}"
+        # Optional: Create a PR instead of direct push
+        createPullRequest: true
+        pullRequestTitle: "Add Azure VM configuration for ${{ parameters.vmName }}"
+        pullRequestBody: |
+          This PR adds configuration for a new Azure VM with the following specs:
+          - Name: ${{ parameters.vmName }}
+          - Region: ${{ parameters.region }}
+          - Size: ${{ parameters.vmSize }}
     - id: register
       name: Register Component in Backstage Catalog
       action: catalog:register
