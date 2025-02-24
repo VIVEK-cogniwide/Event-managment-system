@@ -66,7 +66,7 @@ spec:
       input:
         allowedHosts: ["github.com"]
         description: "Terraform configuration for Azure VM"
-        repoUrl: "github.com?owner=VIVEK-cogniwide&repo=terraform_config_repo"
+        repoUrl: "github.com?owner=VIVEK-cogniwide&repo=terraform_cloud"
         defaultBranch: main
     - id: register
       name: Register Component in Backstage Catalog
