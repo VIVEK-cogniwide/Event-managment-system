@@ -66,7 +66,7 @@ spec:
       input:
         allowedHosts: ["github.com"]
         description: "Terraform configuration for Azure VM"
-        repoUrl: "git@github.com:VIVEK-cogniwide/terraform_cloud.git"
+        repoUrl: "github.com?owner=VIVEK-cogniwide&repo=terraform_cloud"
         defaultBranch: main
         sourcePath: './'
     - id: register
