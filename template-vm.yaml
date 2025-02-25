@@ -53,22 +53,27 @@ spec:
   steps:
     - id: fetch-template
       name: Fetch Terraform Code
-      action: fetch:template
+      action: fetch:plain
       input:
         url: "git@github.com:VIVEK-cogniwide/terraform_cloud.git"
+        targetPath: "terraform/"
         values:
           vmName: ${{ parameters.vmName }}
           region: ${{ parameters.region }}
           vmSize: ${{ parameters.vmSize }}
+        copyWithoutTemplating: true  
+        branch: main  
+        paths:
+          - terraform_cloud_practicals/IAC/terraform/terraform-Modules/compute/virtual_machines/
     - id: publish
       name: Publish to GitHub
       action: publish:github
       input:
         allowedHosts: ['github.com']
         description: "Terraform configuration for Azure VM"
-        repoUrl: 'github.com?owner=VIVEK-cogniwide&repo=terraform_idp'
+        repoUrl: 'github.com?owner=VIVEK-cogniwide&repo=tf_repo_idp'
         defaultBranch: main
-        sourcePath: './'
+        sourcePath: 'terraform/'
         enforceNoRepoCreation: true  # Prevent repository creation
         commitMessage: "Add Azure VM configuration for ${{ parameters.vmName }}"
         createPullRequest: true
