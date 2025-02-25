@@ -70,7 +70,6 @@ spec:
         defaultBranch: main
         sourcePath: './'
         enforceNoRepoCreation: true  # Prevent repository creation
-        # token: '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'
         commitMessage: "Add Azure VM configuration for ${{ parameters.vmName }}"
         createPullRequest: true
         pullRequestTitle: "Add Azure VM configuration for ${{ parameters.vmName }}"
