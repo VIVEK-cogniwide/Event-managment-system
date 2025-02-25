@@ -64,7 +64,7 @@ spec:
         description: "Terraform configuration for Azure VM"
         repoUrl: 'github.com?owner=VIVEK-cogniwide&repo=terraform_idp'
         defaultBranch: main
-        sourcePath: './'
+        sourcePath: 'terraform_cloud_practicals'
         commitMessage: "Add Azure VM configuration for ${{ parameters.vmName }}"
         createPullRequest: true
         pullRequestTitle: "Add Azure VM configuration for ${{ parameters.vmName }}"
