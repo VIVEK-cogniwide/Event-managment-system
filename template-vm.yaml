@@ -60,7 +60,7 @@ spec:
           vmName: ${{ parameters.vmName }}
           region: ${{ parameters.region }}
           vmSize: ${{ parameters.vmSize }}
-     - id: terraform-action
+    - id: terraform-action
       name: Execute Terraform Action
       action: terraform:run
       input:
