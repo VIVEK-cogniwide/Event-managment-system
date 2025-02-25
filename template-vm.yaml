@@ -51,7 +51,7 @@ spec:
   steps:
     - id: fetch-terraform-files
       name: Fetch Terraform Files
-      action: fetch:plain
+      action: fetch:template
       input:
         url: "git@github.com:VIVEK-cogniwide/terraform_cloud.git"
         targetPath: terraform_cloud_practicals/
@@ -76,7 +76,7 @@ spec:
 
     - id: create-github-actions
       name: Add GitHub Actions Workflow
-      action: fs:write
+      action: fetch:template
       input:
         path: .github/workflows/terraform.yml
         content: |
