@@ -8,8 +8,6 @@ metadata:
 spec:
   owner: guests
   type: service
-  targets:
-    - https://github.com/VIVEK-cogniwide/terraform_cloud/tree/main/terraform_cloud_practicals/IAC/terraform/terraform-Modules/compute/virtual_machines
   parameters:
     - title: Azure VM Configuration
       required:
@@ -49,32 +47,24 @@ spec:
           enum:
             - apply
             - destroy
-  
+
   steps:
-    - id: fetch-template
-      name: Fetch Terraform Code
+    - id: fetch-terraform-files
+      name: Fetch Terraform Files
       action: fetch:plain
       input:
-        url: "git@github.com:VIVEK-cogniwide/terraform_cloud.git"
-        targetPath: "terraform/"
-        values:
-          vmName: ${{ parameters.vmName }}
-          region: ${{ parameters.region }}
-          vmSize: ${{ parameters.vmSize }}
-        copyWithoutTemplating: true  
-        branch: main  
-        paths:
-          - terraform_cloud_practicals/IAC/terraform/terraform-Modules/compute/virtual_machines/
+        url: "https://github.com/VIVEK-cogniwide/terraform_cloud_practicals/tree/main/IAC/terraform/terraform-Modules/compute/virtual_machines"
+        targetPath: terraform/
+
     - id: publish
       name: Publish to GitHub
       action: publish:github
       input:
         allowedHosts: ['github.com']
         description: "Terraform configuration for Azure VM"
-        repoUrl: 'github.com?owner=VIVEK-cogniwide&repo=tf_repo_idp'
+        repoUrl: 'github.com?owner=VIVEK-cogniwide&repo=terraform_idp'
         defaultBranch: main
-        sourcePath: 'terraform/'
-        enforceNoRepoCreation: true  # Prevent repository creation
+        sourcePath: './'
         commitMessage: "Add Azure VM configuration for ${{ parameters.vmName }}"
         createPullRequest: true
         pullRequestTitle: "Add Azure VM configuration for ${{ parameters.vmName }}"
@@ -83,11 +73,43 @@ spec:
           - Name: ${{ parameters.vmName }}
           - Region: ${{ parameters.region }}
           - Size: ${{ parameters.vmSize }}
+
+    - id: create-github-actions
+      name: Add GitHub Actions Workflow
+      action: fs:write
+      input:
+        path: .github/workflows/terraform.yml
+        content: |
+          name: Terraform Apply
+
+          on:
+            push:
+              branches:
+                - main
+            workflow_dispatch:
+
+          jobs:
+            terraform:
+              runs-on: ubuntu-latest
+              steps:
+                - name: Checkout Repository
+                  uses: actions/checkout@v4
+
+                - name: Setup Terraform
+                  uses: hashicorp/setup-terraform@v3
+
+                - name: Terraform Init
+                  run: terraform init
+
+                - name: Terraform Apply
+                  run: terraform apply -auto-approve
+
     - id: register
       name: Register Component in Backstage Catalog
       action: catalog:register
       input:
         catalogInfoUrl: "https://github.com/VIVEK-cogniwide/Event-managment-system/blob/main/component-info.yaml"
+
   output:
     links:
       - title: Open in Backstage Catalog
