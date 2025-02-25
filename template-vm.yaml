@@ -53,8 +53,8 @@ spec:
       name: Fetch Terraform Files
       action: fetch:plain
       input:
-        url: "https://github.com/VIVEK-cogniwide/terraform_cloud_practicals/tree/main/IAC/terraform/terraform-Modules/compute/virtual_machines"
-        targetPath: terraform/
+        url: "git@github.com:VIVEK-cogniwide/terraform_cloud.git"
+        targetPath: terraform_cloud_practicals/
 
     - id: publish
       name: Publish to GitHub
