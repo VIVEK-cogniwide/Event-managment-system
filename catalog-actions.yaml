@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: backstage
+  namespace: backstage
+  description: IDP Platform
+  annotations:
+    github.com/project-slug: cogniwide/backstage
+    github.com/actions: cogniwide/backstage
+spec:
+  type: service
+  lifecycle: production
+  owner: infra-team
+  system: authentication
