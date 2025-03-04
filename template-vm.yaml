@@ -80,7 +80,7 @@ spec:
       input:
         repoUrl: 'github.com?owner=VIVEK-cogniwide&repo=terraform_cloud'
         workflowId: 'terraform.yml'
-        branch: main
+        branchOrTagName: main
         workflowInputs:
           vmName: ${{ parameters.vmName }}
           region: ${{ parameters.region }}
