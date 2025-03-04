@@ -85,7 +85,7 @@ spec:
           vmName: ${{ parameters.vmName }}
           region: ${{ parameters.region }}
           vmSize: ${{ parameters.vmSize }}
-          action: ${{ parameters.action }}
+          # action: ${{ parameters.action }}
     - id: register
       name: Register Component in Backstage Catalog
       action: catalog:register
