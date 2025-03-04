@@ -14,7 +14,6 @@ spec:
         - vmName
         - region
         - vmSize
-        - action
       properties:
         vmName:
           title: Virtual Machine Name
