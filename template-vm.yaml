@@ -40,13 +40,13 @@ spec:
             - Standard_F2s_v2
             - Standard_E2s_v3
           default: Standard_B2s
-        action:
-          title: Action
-          type: string
-          description: Select whether to apply (create) or destroy the VM
-          enum:
-            - apply
-            - destroy
+        # action:
+        #   title: Action
+        #   type: string
+        #   description: Select whether to apply (create) or destroy the VM
+        #   enum:
+        #     - apply
+        #     - destroy
 
   steps:
     - id: fetch-terraform-files
