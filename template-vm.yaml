@@ -56,23 +56,23 @@ spec:
         url: "git@github.com:VIVEK-cogniwide/terraform_cloud.git"
         targetPath: 'terraform_cloud_practicals'
 
-    - id: publish
-      name: Publish to GitHub
-      action: publish:github
-      input:
-        allowedHosts: ['github.com']
-        description: "Terraform configuration for Azure VM"
-        repoUrl: 'github.com?owner=VIVEK-cogniwide&repo=terraform_idp'
-        defaultBranch: main
-        sourcePath: 'terraform_cloud_practicals/IAC/terraform/terraform-Modules/compute/virtual_machines'
-        commitMessage: "Add Azure VM configuration for ${{ parameters.vmName }}"
-        createPullRequest: true
-        pullRequestTitle: "Add Azure VM configuration for ${{ parameters.vmName }}"
-        pullRequestBody: |
-          This PR adds configuration for a new Azure VM with the following specs:
-          - Name: ${{ parameters.vmName }}
-          - Region: ${{ parameters.region }}
-          - Size: ${{ parameters.vmSize }}
+    # - id: publish
+    #   name: Publish to GitHub
+    #   action: publish:github
+    #   input:
+    #     allowedHosts: ['github.com']
+    #     description: "Terraform configuration for Azure VM"
+    #     repoUrl: 'github.com?owner=VIVEK-cogniwide&repo=terraform_idp'
+    #     defaultBranch: main
+    #     sourcePath: 'terraform_cloud_practicals/IAC/terraform/terraform-Modules/compute/virtual_machines'
+    #     commitMessage: "Add Azure VM configuration for ${{ parameters.vmName }}"
+    #     createPullRequest: true
+    #     pullRequestTitle: "Add Azure VM configuration for ${{ parameters.vmName }}"
+    #     pullRequestBody: |
+    #       This PR adds configuration for a new Azure VM with the following specs:
+    #       - Name: ${{ parameters.vmName }}
+    #       - Region: ${{ parameters.region }}
+    #       - Size: ${{ parameters.vmSize }}
 
     - id: create-github-actions
       name: Add GitHub Actions Workflow
@@ -80,30 +80,55 @@ spec:
       input:
         path: .github/workflows/terraform.yml
         content: |
-          name: Terraform Apply
+         name: 'Terraform'
 
-          on:
-            push:
-              branches:
-                - main
-            workflow_dispatch:
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
 
-          jobs:
-            terraform:
-              runs-on: ubuntu-latest
-              steps:
-                - name: Checkout Repository
-                  uses: actions/checkout@v4
+permissions:
+  contents: read
 
-                - name: Setup Terraform
-                  uses: hashicorp/setup-terraform@v3
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    environment: production
 
-                - name: Terraform Init
-                  run: terraform init
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
 
-                - name: Terraform Apply
-                  run: terraform apply -auto-approve
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v4
 
+    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init
+      run: terraform init
+
+    # Checks that all Terraform configuration files adhere to a canonical format
+    - name: Terraform Format
+      run: terraform fmt -check
+
+    # Generates an execution plan for Terraform
+    - name: Terraform Plan
+      run: terraform plan -input=false
+
+      # On push to "main", build or change infrastructure according to Terraform configuration files
+      # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
+      run: terraform apply -auto-approve -input=false
     - id: register
       name: Register Component in Backstage Catalog
       action: catalog:register
