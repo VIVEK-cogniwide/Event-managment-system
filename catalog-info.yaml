@@ -4,7 +4,7 @@ metadata:
   name: Release-Dashboard
   description: Release Dashboard DOCS
   annotations:
-    backstage.io/techdocs-ref: dir:.
+    backstage.io/techdocs-ref: url: https://github.com/Sriman-COGNIWIDE/BE-Release-Dash/blob/main/docs/index.md
     # jenkins.io/github-folder: 'https://github.com/VIVEK-cogniwide/Event-managment-system'
 spec:
   type: service
