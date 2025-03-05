@@ -1,10 +1,10 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: Release-Dashboard
+  name: DOCS-docs
   description: Release Dashboard DOCS
   annotations:
-    backstage.io/techdocs-ref: url:https://github.com/Sriman-COGNIWIDE/BE-Release-Dash/blob/main/docs/index.md
+    backstage.io/techdocs-ref: url:https://github.com/Sriman-COGNIWIDE/BE-Release-Dash
 spec:
   type: service
   lifecycle: experimental
