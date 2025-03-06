@@ -13,7 +13,7 @@ metadata:
     - title: Link Provided
       url: https://www.google.com
   annotations:
-    jenkins.io/job-full-name: deploy_pipeline
+    jenkins.io/job-full-name: pipeline_folder/fe_pipeline
 spec:
   type: service
   lifecycle: production
