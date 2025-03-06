@@ -1,0 +1,21 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: s3-11th-project-example
+  description: This is a test project created via API
+  tags:
+    - test
+    - api
+    - demo
+  links:
+    - title: Source Repository
+      url: https://github.com/Sriman-COGNIWIDE/BE-Release-Dash
+    - title: Link Provided
+      url: https://www.google.com
+  annotations:
+    jenkins.io/job-full-name: Backend-Projects/BE_RD
+spec:
+  type: service
+  lifecycle: production
+  owner: group:default/team-a
+  system: Engineering
