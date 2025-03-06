@@ -13,7 +13,7 @@ metadata:
     - title: Link Provided
       url: https://www.google.com
   annotations:
-    jenkins.io/job-full-name: Backend-Projects/BE_RD
+    jenkins.io/job-full-name: deploy_pipeline
 spec:
   type: service
   lifecycle: production
