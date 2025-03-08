@@ -11,8 +11,8 @@ spec:
   parameters:
     - title: Azure VM Configuration
       required:
-        - vmName
-        - region
+        - vm_name
+        - location
       properties:
         vm_name:
           title: Virtual Machine Name
