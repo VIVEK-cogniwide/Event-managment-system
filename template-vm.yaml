@@ -53,7 +53,7 @@ spec:
       action: fetch:template
       input:
         url: "git@github.com:VIVEK-cogniwide/terraform_cloud.git"
-        targetPath: 'terraform_cloud_practicals'
+        targetPath: 'terraform_vm_template'
 
     # - id: publish
     #   name: Publish to GitHub
