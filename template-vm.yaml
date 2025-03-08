@@ -13,39 +13,23 @@ spec:
       required:
         - vmName
         - region
-        - vmSize
       properties:
-        vmName:
+        vm_name:
           title: Virtual Machine Name
           type: string
           description: Name of the Azure Virtual Machine
-        region:
+        location:
           title: Azure Region
           type: string
-          description: Azure region where the VM will be deployed (e.g., eastus, uksouth, westeurope)
+          description: Azure location where the VM will be deployed (e.g., eastus, uksouth, westeurope)
           enum:
             - eastus
             - westus
             - uksouth
             - westeurope
           default: eastus
-        vmSize:
-          title: VM Size
-          type: string
-          description: Size of the virtual machine (e.g., Standard_B2s, Standard_D2s_v3)
-          enum:
-            - Standard_B2s
-            - Standard_D2s_v3
-            - Standard_F2s_v2
-            - Standard_E2s_v3
-          default: Standard_B2s
-        # action:
-        #   title: Action
-        #   type: string
-        #   description: Select whether to apply (create) or destroy the VM
-        #   enum:
-        #     - apply
-        #     - destroy
+       
+        
 
   steps:
     - id: fetch-terraform-files
@@ -81,9 +65,9 @@ spec:
         workflowId: 'terraform.yml'
         branchOrTagName: main
         workflowInputs:
-          vmName: ${{ parameters.vmName }}
-          region: ${{ parameters.region }}
-          vmSize: ${{ parameters.vmSize }}
+          vm_name: ${{ parameters.vm_name }}
+          location: ${{ parameters.location }}
+         
           # action: ${{ parameters.action }}
     - id: register
       name: Register Component in Backstage Catalog
