@@ -1,0 +1,83 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: create-azure-storageaccount
+  title: Create an Azure Blob Storage Account
+  description: Template for creating an Azure Storage Account using Terraform
+  tags: ['azure', 'terraform', 'storage']
+spec:
+  owner: guests
+  type: service
+  parameters:
+    - title: Azure VM Configuration
+      required:
+        - resource_group_name
+        - location
+      properties:
+        resource_group_name:
+          title: Name of the Resource group that contains storage account
+          type: string
+          description: Name of the Azure resource group
+        location:
+          title: Azure Region
+          type: string
+          description: Azure location where the VM will be deployed (e.g., eastus, uksouth, westeurope)
+          enum:
+            - eastus
+            - westus
+            - uksouth
+            - westeurope
+          default: eastus
+       
+        
+
+  steps:
+    - id: fetch-terraform-files
+      name: Fetch Terraform Files
+      action: fetch:template
+      input:
+        url: "git@github.com:VIVEK-cogniwide/terraform_cloud.git"
+        targetPath: 'storage'
+
+    # - id: publish
+    #   name: Publish to GitHub
+    #   action: publish:github
+    #   input:
+    #     allowedHosts: ['github.com']
+    #     description: "Terraform configuration for Azure VM"
+    #     repoUrl: 'github.com?owner=VIVEK-cogniwide&repo=terraform_idp'
+    #     defaultBranch: main
+    #     sourcePath: 'terraform_cloud_practicals/IAC/terraform/terraform-Modules/compute/virtual_machines'
+    #     commitMessage: "Add Azure VM configuration for ${{ parameters.vmName }}"
+    #     createPullRequest: true
+    #     pullRequestTitle: "Add Azure VM configuration for ${{ parameters.vmName }}"
+    #     pullRequestBody: |
+    #       This PR adds configuration for a new Azure VM with the following specs:
+    #       - Name: ${{ parameters.vmName }}
+    #       - Region: ${{ parameters.region }}
+    #       - Size: ${{ parameters.vmSize }}
+
+    - id: create-github-actions
+      name: Add GitHub Actions Workflow
+      action: github:actions:dispatch
+      input:
+        repoUrl: 'github.com?owner=VIVEK-cogniwide&repo=terraform_cloud'
+        workflowId: 'terraformstorage.yml'
+        branchOrTagName: main
+        workflowInputs:
+          vm_name: ${{ parameters.resource_group_name }}
+          location: ${{ parameters.location }}
+        waitForCompletion: true 
+         
+          # action: ${{ parameters.action }}
+    - id: register
+      name: Register Component in Backstage Catalog
+      action: catalog:register
+      input:
+        catalogInfoUrl: "https://github.com/VIVEK-cogniwide/Event-managment-system/blob/main/component-info.yaml"
+
+  output:
+    links:
+      - title: Open in Backstage Catalog
+        icon: catalog
+        entityRef: ${{ steps['register'].output.entityRef }}
