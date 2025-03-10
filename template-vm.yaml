@@ -27,6 +27,7 @@ spec:
             - westus
             - uksouth
             - westeurope
+            - centralindia
           default: eastus
        
         
