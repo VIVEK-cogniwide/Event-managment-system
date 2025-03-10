@@ -68,6 +68,14 @@ spec:
           vm_name: ${{ parameters.vm_name }}
           location: ${{ parameters.location }}
         waitForCompletion: true 
+
+     - id: check-initial-status
+      name: Check Initial Deployment Status
+      action: github:actions:get
+      input:
+        repoUrl: 'github.com?owner=VIVEK-cogniwide&repo=terraform_cloud'
+        workflowId: 'terraform.yml'
+        runId: ${{ steps['create-github-actions'].output.runId }}
          
           # action: ${{ parameters.action }}
     - id: register
