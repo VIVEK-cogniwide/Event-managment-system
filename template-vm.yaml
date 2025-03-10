@@ -69,11 +69,16 @@ spec:
           location: ${{ parameters.location }}
         waitForCompletion: true 
 
-    - id: log-workflow-info
-      name: Log Workflow Run Information
-      action: debug:log
+    - id: stream-logs
+      name: Stream Live Logs
+      action: fetch:plain
       input:
-        message: "GitHub Actions workflow triggered with Run ID: ${{ steps['create-github-actions'].output.runId }}"
+        url: "https://api.github.com/repos/VIVEK-cogniwide/terraform_cloud/actions/runs/${{ steps['create-github-actions'].output.runId }}/logs"
+        method: GET
+        headers:
+          Accept: "application/vnd.github.v3+json"
+        pollingIntervalMs: 5000 
+
          
           # action: ${{ parameters.action }}
     - id: register
