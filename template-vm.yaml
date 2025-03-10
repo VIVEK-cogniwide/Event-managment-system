@@ -69,13 +69,11 @@ spec:
           location: ${{ parameters.location }}
         waitForCompletion: true 
 
-    - id: check-initial-status
-      name: Check Initial Deployment Status
-      action: github:actions:get
+    - id: log-workflow-info
+      name: Log Workflow Run Information
+      action: debug:log
       input:
-        repoUrl: 'github.com?owner=VIVEK-cogniwide&repo=terraform_cloud'
-        workflowId: 'terraform.yml'
-        runId: ${{ steps['create-github-actions'].output.runId }}
+        message: "GitHub Actions workflow triggered with Run ID: ${{ steps['create-github-actions'].output.runId }}"
          
           # action: ${{ parameters.action }}
     - id: register
@@ -89,3 +87,6 @@ spec:
       - title: Open in Backstage Catalog
         icon: catalog
         entityRef: ${{ steps['register'].output.entityRef }}
+      - title: View Deployment in GitHub Actions
+        icon: github
+        url: https://github.com/VIVEK-cogniwide/terraform_cloud/actions/runs/${{ steps['create-github-actions'].output.runId }}
