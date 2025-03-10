@@ -85,7 +85,7 @@ spec:
       name: Register Component in Backstage Catalog
       action: catalog:register
       input:
-        catalogInfoUrl: "https://github.com/VIVEK-cogniwide/Event-managment-system/blob/main/component-info.yaml"
+        catalogInfoUrl: "https://github.com/VIVEK-cogniwide/terraform_cloud/blob/main/component-info.yaml"
 
   output:
     links:
