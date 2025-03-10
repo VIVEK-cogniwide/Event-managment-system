@@ -65,7 +65,7 @@ spec:
         workflowId: 'terraformstorage.yml'
         branchOrTagName: main
         workflowInputs:
-          vm_name: ${{ parameters.resource_group_name }}
+          resource_group_name: ${{ parameters.resource_group_name }}
           location: ${{ parameters.location }}
         waitForCompletion: true 
          
