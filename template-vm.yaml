@@ -69,7 +69,7 @@ spec:
           location: ${{ parameters.location }}
         waitForCompletion: true 
 
-     - id: check-initial-status
+    - id: check-initial-status
       name: Check Initial Deployment Status
       action: github:actions:get
       input:
