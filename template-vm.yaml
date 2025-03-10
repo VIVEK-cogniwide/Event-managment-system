@@ -67,6 +67,7 @@ spec:
         workflowInputs:
           vm_name: ${{ parameters.vm_name }}
           location: ${{ parameters.location }}
+        waitForCompletion: true 
          
           # action: ${{ parameters.action }}
     - id: register
