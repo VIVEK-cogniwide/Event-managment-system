@@ -6,7 +6,7 @@ metadata:
   description: Template for creating an Azure Virtual Machine using Terraform
   tags: ['azure', 'terraform', 'virtual-machine']
 spec:
-  owner: guests
+  owner: dev-team
   type: service
   parameters:
     - title: Azure VM Configuration
