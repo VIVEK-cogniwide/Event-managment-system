@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: Storage-account-automation
+  description: "An automation component for storage managment"
+  annotations:
+    github.com/project-slug: VIVEK-cogniwide/Event-managment-system
+spec:
+  type: service
+  lifecycle: production
+  owner: dev-team
