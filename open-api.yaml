@@ -1,26 +1,26 @@
- openapi: "3.0.0"
-    info:
-      version: 1.0.0
+openapi: "3.0.0"
+   info:
+     version: 1.0.0
       title: Environment API
       license:
         name: COGNIWIDE
-    servers:
-      - url: http://127.0.0.1:5001/inventory
-    paths:
-      /all-envs:
-        get:
-          summary: List all environments
-          operationId: getAllEnvironments
-          responses:
-            '200':
-              description: Successful response
-              content:
-                application/json:
-                  schema:
-                    type: object
-                    properties:
-                      environments:
-                        type: array
+   servers:
+     - url: http://127.0.0.1:5001/inventory
+   paths:
+     /all-envs:
+       get:
+         summary: List all environments
+         operationId: getAllEnvironments
+         responses:
+           '200':
+             description: Successful response
+             content:
+               application/json:
+                 schema:
+                   type: object
+                   properties:
+                     environments:
+                       type: array
                         items:
                           type: string
                     required:
