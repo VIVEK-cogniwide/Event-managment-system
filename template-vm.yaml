@@ -103,4 +103,4 @@ spec:
         entityRef: ${{ steps['register'].output.entityRef }}
       - title: View Deployment in GitHub Actions
         icon: github
-        url: https://github.com/cogniwide/backstage/actions/runs/${{ steps['create-github-actions'].output.runId }}
+        url: https://github.com/VIVEK-cogniwide/terraform_cloud/actions/runs/${{ steps['create-github-actions'].output.runId }}
