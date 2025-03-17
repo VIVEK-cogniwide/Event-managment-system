@@ -6,13 +6,14 @@ metadata:
   description: Template for creating an Azure Virtual Machine using Terraform
   tags: ['azure', 'terraform', 'virtual-machine']
 spec:
-  owner: dev-team
+  owner: guests
   type: service
   parameters:
     - title: Azure VM Configuration
       required:
         - vm_name
         - location
+        - admin_password
       properties:
         vm_name:
           title: Virtual Machine Name
@@ -27,8 +28,25 @@ spec:
             - westus
             - uksouth
             - westeurope
-            - centralindia
           default: eastus
+        admin_username:  # ✅ Fixed Indentation
+          title: Admin Username
+          type: string
+          description: Default admin username for the VM
+          default: azureuser
+        admin_password:
+          title: Admin Password
+          type: string
+          description: Password for the VM administrator account
+          ui:password: true  # Hides input in UI
+        action:
+        title: "Terraform Action"
+        type: string
+        enum:
+          - apply
+          - destroy
+        default: apply
+       
        
         
 
@@ -68,25 +86,14 @@ spec:
         workflowInputs:
           vm_name: ${{ parameters.vm_name }}
           location: ${{ parameters.location }}
-        waitForCompletion: true 
-
-    # - id: stream-logs
-    #   name: Stream Live Logs
-    #   action: fetch:plain
-    #   input:
-    #     url: "https://api.github.com/repos/VIVEK-cogniwide/terraform_cloud/actions/runs/${{ steps['create-github-actions'].output.runId }}/logs"
-    #     method: GET
-    #     headers:
-    #       Accept: "application/vnd.github.v3+json"
-    #     pollingIntervalMs: 5000 
-
+          admin_password: ${{ parameters.admin_password }}
          
           # action: ${{ parameters.action }}
     - id: register
       name: Register Component in Backstage Catalog
       action: catalog:register
       input:
-        catalogInfoUrl: "https://github.com/VIVEK-cogniwide/terraform_cloud/blob/main/component-info.yaml"
+        catalogInfoUrl: "https://github.com/VIVEK-cogniwide/Event-managment-system/blob/main/component-info.yaml"
 
   output:
     links:
@@ -95,4 +102,4 @@ spec:
         entityRef: ${{ steps['register'].output.entityRef }}
       - title: View Deployment in GitHub Actions
         icon: github
-        url: https://github.com/VIVEK-cogniwide/terraform_cloud/actions/runs/${{ steps['create-github-actions'].output.runId }}
+        url: https://github.com/cogniwide/backstage/actions/runs/${{ steps['create-github-actions'].output.runId }}
