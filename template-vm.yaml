@@ -14,6 +14,7 @@ spec:
         - vm_name
         - location
         - admin_password
+        - action
       properties:
         vm_name:
           title: Virtual Machine Name
