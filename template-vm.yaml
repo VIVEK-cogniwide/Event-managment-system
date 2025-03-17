@@ -41,12 +41,12 @@ spec:
           description: Password for the VM administrator account
           ui:password: true  # Hides input in UI
         action:
-        title: "Terraform Action"
-        type: string
-        enum:
-          - apply
-          - destroy
-        default: apply
+          title: "Terraform Action"
+          type: string
+          enum:
+            - apply
+            - destroy
+          default: apply
        
        
         
