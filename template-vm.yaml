@@ -88,8 +88,7 @@ spec:
           vm_name: ${{ parameters.vm_name }}
           location: ${{ parameters.location }}
           admin_password: ${{ parameters.admin_password }}
-         
-          # action: ${{ parameters.action }}
+          action: ${{ parameters.action }}
     - id: register
       name: Register Component in Backstage Catalog
       action: catalog:register
