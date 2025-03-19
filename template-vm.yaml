@@ -39,7 +39,7 @@ spec:
           title: Admin Password
           type: string
           description: Password for the VM administrator account
-          ui:password: true  # Hides input in UI
+          ui:field: Secret
         action:
           title: "Terraform Action"
           type: string
