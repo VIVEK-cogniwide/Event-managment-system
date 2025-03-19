@@ -4,7 +4,7 @@ metadata:
   name: instance-automation
   description: "An automation component for instance management"
   annotations:
-    github.com/project-slug: VIVEK-cogniwide/Event-managment-system
+    github.com/project-slug: VIVEK-cogniwide/terraform_cloud
 spec:
   type: service
   lifecycle: production
