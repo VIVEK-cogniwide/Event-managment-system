@@ -8,8 +8,9 @@ metadata:
     - npm
     - internal
   annotations:
-    aws.amazon.com/codeartifact-repo-url: https://my-domain-123456789012.d.codeartifact.us-west-2.amazonaws.com/npm/my-repo/
-    github.com/project-slug: VIVEK-cogniwide/terraform_cloud
+    aws.amazon.com/codeartifact-domain: techstackrepo
+    aws.amazon.com/codeartifact-repo: techstack
+    aws.amazon.com/codeartifact-region: eu-north-1
 spec:
   type: library
   lifecycle: production
