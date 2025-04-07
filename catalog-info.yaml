@@ -1,11 +1,16 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: DOCS-docs
-  description: Release Dashboard DOCS
+  name: ws-codeartifact-repo
+  description: AWS CodeArtifact workspace for internal packages
+  tags:
+    - codeartifact
+    - npm
+    - internal
   annotations:
-    backstage.io/techdocs-ref: url:https://github.com/Sriman-COGNIWIDE/BE-Release-Dash
+    aws.amazon.com/codeartifact-repo-url: https://my-domain-123456789012.d.codeartifact.us-west-2.amazonaws.com/npm/my-repo/
+    github.com/project-slug: VIVEK-cogniwide/terraform_cloud
 spec:
-  type: service
-  lifecycle: experimental
-  owner: user:VIVEK-cogniwide
+  type: library
+  lifecycle: production
+  owner: team-infra
