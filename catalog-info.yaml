@@ -12,6 +12,6 @@ metadata:
     aws.amazon.com/codeartifact-repo: techstack
     aws.amazon.com/codeartifact-region: eu-north-1
 spec:
-  type: service
+  type: library
   lifecycle: production
   owner: team-infra
