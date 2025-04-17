@@ -4,7 +4,7 @@ metadata:
   name: create-azure-storageaccount
   title: Create an Azure Blob Storage Account
   description: Template for creating an Azure Storage Account using Terraform
-  tags: ['azure', 'terraform', 'storage']
+  tags: ["azure", "terraform", "storage"]
 spec:
   owner: guests
   type: service
@@ -13,6 +13,7 @@ spec:
       required:
         - resource_group_name
         - location
+        - action
       properties:
         resource_group_name:
           title: Name of the Resource group that contains storage account
@@ -28,8 +29,13 @@ spec:
             - uksouth
             - westeurope
           default: eastus
-       
-        
+        action:
+          title: "Terraform Action"
+          type: string
+          enum:
+            - apply
+            - destroy
+          default: apply
 
   steps:
     - id: fetch-terraform-files
@@ -37,7 +43,7 @@ spec:
       action: fetch:template
       input:
         url: "git@github.com:VIVEK-cogniwide/terraform_cloud.git"
-        targetPath: 'storage'
+        targetPath: "storage"
 
     # - id: publish
     #   name: Publish to GitHub
@@ -61,14 +67,15 @@ spec:
       name: Add GitHub Actions Workflow
       action: github:actions:dispatch
       input:
-        repoUrl: 'github.com?owner=VIVEK-cogniwide&repo=terraform_cloud'
-        workflowId: 'terraformstorage.yml'
+        repoUrl: "github.com?owner=VIVEK-cogniwide&repo=terraform_cloud"
+        workflowId: "terraformstorage.yml"
         branchOrTagName: main
         workflowInputs:
           resource_group_name: ${{ parameters.resource_group_name }}
           location: ${{ parameters.location }}
-        waitForCompletion: true 
-         
+        waitForCompletion:
+          true
+
           # action: ${{ parameters.action }}
     - id: register
       name: Register Component in Backstage Catalog
