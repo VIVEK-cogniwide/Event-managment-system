@@ -73,6 +73,7 @@ spec:
         workflowInputs:
           resource_group_name: ${{ parameters.resource_group_name }}
           location: ${{ parameters.location }}
+          action: ${{ parameters.action }}
         waitForCompletion:
           true
 
