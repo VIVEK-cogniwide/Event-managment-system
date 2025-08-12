@@ -1,0 +1,186 @@
+openapi: 3.0.0
+info:
+  title: Loom API
+  description: API for the Loom instance, providing access to catalog, scaffolder, techdocs, and other integrated services.
+  version: 1.0.0
+  contact:
+    name: Cogniwide
+servers:
+  - url: http://10.10.20.240:7007
+    description: Production server as configured in app-config.yaml
+security:
+  - bearerAuth: []
+
+paths:
+  /api/catalog/entities:
+    get:
+      summary: List catalog entities
+      description: Retrieve a list of all entities from the software catalog.
+      operationId: getCatalogEntities
+      tags:
+        - catalog
+      responses:
+        '200':
+          description: A list of catalog entities.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Entity'
+        '500':
+          description: Internal Server Error
+
+  /api/scaffolder/v2/tasks:
+    post:
+      summary: Create a new scaffolder task
+      description: Executes a new scaffolder task based on a template.
+      operationId: createScaffolderTask
+      tags:
+        - scaffolder
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                templateRef:
+                  type: string
+                  example: template:default/react-ssr-template
+                values:
+                  type: object
+                  example:
+                    component_id: my-new-component
+                    owner: user:default/guest
+      responses:
+        '201':
+          description: Task created successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+
+  /api/techdocs/docs/{namespace}/{kind}/{name}:
+    get:
+      summary: Get TechDocs content
+      description: Retrieve the documentation for a specific entity.
+      operationId: getTechDocs
+      tags:
+        - techdocs
+      parameters:
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: kind
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The documentation content.
+          content:
+            text/html:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Not Found
+
+  /api/kubernetes/api/v1/namespaces/{namespace}/pods:
+    get:
+      summary: List pods in a Kubernetes namespace (via proxy)
+      description: >
+        Proxies a request to the configured Kubernetes API server to list pods.
+        This endpoint is defined by the `proxy` configuration in `app-config.yaml`.
+      operationId: listKubernetesPods
+      tags:
+        - kubernetes
+        - proxy
+      parameters:
+        - name: namespace
+          in: path
+          required: true
+          schema:
+            type: string
+            example: default
+      responses:
+        '200':
+          description: A list of Kubernetes pods.
+          content:
+            application/json:
+              schema:
+                type: object
+                description: "This would be a Kubernetes PodList object. For a full schema, refer to the Kubernetes API documentation."
+                example:
+                  apiVersion: v1
+                  kind: PodList
+                  items: []
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: "Enter JWT Bearer token **_only_**"
+
+  schemas:
+    Entity:
+      type: object
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+          example: Component
+        metadata:
+          type: object
+          properties:
+            name:
+              type: string
+            namespace:
+              type: string
+            annotations:
+              type: object
+            labels:
+              type: object
+            tags:
+              type: array
+              items:
+                type: string
+        spec:
+          type: object
+          properties:
+            type:
+              type: string
+              example: service
+            lifecycle:
+              type: string
+              example: production
+            owner:
+              type: string
+              example: infra-team
+            system:
+              type: string
+              example: authentication
