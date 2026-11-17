@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+
+metadata:
+  name: argocd
+  title: Argo CD
+  description: Argo CD GitOps continuous delivery platform running on Minikube
+  annotations:
+    backstage.io/kubernetes-id: argocd
+    backstage.io/kubernetes-namespace: argocd
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/name=argocd-server'
+  tags:
+    - kubernetes
+    - minikube
+    - gitops
+    - argocd
+
+spec:
+  type: service
+  lifecycle: development
+  owner: user:guest
+  system: minikube-platform
